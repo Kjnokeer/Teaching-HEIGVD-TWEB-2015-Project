@@ -6,6 +6,7 @@ Welcome to the home of the TWEB Project. This is where you will find information
 - Dolt Mathias
 - Duchoud Thibaud
 - Ferreira Mario
+- Noubissi Parfait Plaisir De Pâques
 - Schaad Valentin
 
 ## How to use this repo
