@@ -63,3 +63,16 @@ You will actually be in charge to write the specifications during part1, but we 
 The third part of the project will be a new development iteration. Before starting part 3, you will be asked to specify which features you intend to develop and plan the related activities. During part 3, you will implement these features and make sure that you have a solid implementation at every release. You will also improve the marketing elements of your project (refine content in the product web site, add screenshots, why not create a video). 
 
 Again, some guidelines will later be published [here](specifications/part3).
+
+## Descriptif rapide des fonctionnalités
+
+Il doit être possible de faire un questionnaire pour lequel des questions doivent être associées. Une fois le questionnaire terminé, une URL courte (min, maj, chiffres) doit être générée et peut être transmise aux personnes allant répondre.
+Pour pouvoir créer un questionnaire il est nécessaire de créer un compte sur le site, pour répondre aux questions, il peut être possible d’utiliser son compte ou de répondre avec un compte temporaire (un champ d’identification).
+ Le questionnaire doit permettre de créer des questions des types suivants : 
+-	Choix unique (radio-bouton)
+-	Choix multiple (checkbox)
+-	Réponse libre (text area)
+Il doit être possible pour chaque question d’ajouter une description, insertion d’une image.
+Les résultats associés aux questionnaires sont visible n’importe quand par le créateur du questionnaire, les réponses sont associées à une nouvelle URL qu’il peut partager avec les répondants. 
+Les résultats sont affichés sous forme de graphiques si possible : pour les choix uniques sous forme d’un camembert, pour les choix multiple sous forme de barres. 
+
