@@ -74,7 +74,7 @@ Pour pouvoir créer un questionnaire il est nécessaire de créer un compte sur 
 -	Choix unique (radio-bouton)
 -	Choix multiple (checkbox)
 -	Réponse libre (text area)
--	
+	
 Il doit être possible pour chaque question d’ajouter une description, insertion d’une image.
 Les résultats associés aux questionnaires sont visible n’importe quand par le créateur du questionnaire, les réponses sont associées à une nouvelle URL qu’il peut partager avec les répondants. 
 
