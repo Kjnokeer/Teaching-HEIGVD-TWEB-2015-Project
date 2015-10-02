@@ -1,0 +1,14 @@
+extends layout
+
+block content
+ .box.effect8
+   .wrapper
+     form.form-signin
+       h2.form-signin-heading Please login
+       hr
+       input.form-control(type='text', name='username', placeholder='Email Address', required='', autofocus='')
+       input.form-control(type='password', name='password', placeholder='Password', required='')
+       label.checkbox(style='margin-left: 20px;')
+         input#rememberMe(type='checkbox', value='remember-me', name='rememberMe')
+         |  Remember me
+       button.btn.btn-lg.btn-primary.btn-block(type='submit') Login
