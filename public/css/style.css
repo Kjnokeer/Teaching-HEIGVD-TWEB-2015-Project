@@ -1,0 +1,18 @@
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.home {
+    text-align: center;
+}
+
+.return {
+    margin-top: 10px;
+    float: right;
+}
+
+.add-poll {
+    margin: auto;
+    width: 300px;
+}
