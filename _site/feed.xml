@@ -4,10 +4,10 @@
     <title>Your awesome title</title>
     <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </description>
-    <link>https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/tree/gh-pages/</link>
-    <atom:link href="https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/tree/gh-pages/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 29 Oct 2015 14:41:14 +0100</pubDate>
-    <lastBuildDate>Thu, 29 Oct 2015 14:41:14 +0100</lastBuildDate>
+    <link>https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/</link>
+    <atom:link href="https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 29 Oct 2015 15:00:53 +0100</pubDate>
+    <lastBuildDate>Thu, 29 Oct 2015 15:00:53 +0100</lastBuildDate>
     <generator>Jekyll v3.0.0</generator>
     
       <item>
@@ -28,8 +28,8 @@
 
 </description>
         <pubDate>Thu, 29 Oct 2015 14:31:18 +0100</pubDate>
-        <link>https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/tree/gh-pages/jekyll/update/2015/10/29/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/tree/gh-pages/jekyll/update/2015/10/29/welcome-to-jekyll.html</guid>
+        <link>https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/jekyll/update/2015/10/29/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/jekyll/update/2015/10/29/welcome-to-jekyll.html</guid>
         
         
         <category>jekyll</category>
