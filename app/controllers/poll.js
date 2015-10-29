@@ -42,6 +42,7 @@ router.delete('/polls/:id', function(req, res) {
    });
 });
 
+// Edition d'un poll
 router.put('/polls/:id', function(req, res) {
    Poll.findByIdAndUpdate(req.params.id, {
       title: req.body.title,
@@ -60,15 +61,4 @@ router.get('/polls/:id', function(req, res) {
          poll: poll
       });
    });
-});
-
-
-router.post('/polls/edit', function(req, res) {
-   Poll.findByIdAndUpdate(req.body.id, {
-      title: req.body.title,
-      state: req.body.state
-   }, function(err, model) {
-      if (err) throw err;
-   });
-   res.redirect('/polls');
 });

@@ -10,9 +10,12 @@ var PollSchema = new Schema({
    state: String
 });
 
-var PollModel = mongoose.model('Poll', PollSchema);
+mongoose.model('Poll', PollSchema);
+
 
 /* POUR LES TESTS */
+/*
+var PollModel = mongoose.model('Poll', PollSchema);
 
 PollModel.remove({}, function(err) {
    if (err) throw err;
@@ -56,3 +59,4 @@ poll = new PollModel({
    state: 'drafti'
 });
 poll.save(null);
+*/
