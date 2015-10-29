@@ -1,7 +1,8 @@
 var express = require('express'),
    router = express.Router(),
    mongoose = require('mongoose'),
-   Poll = mongoose.model('Poll');
+   Poll = mongoose.model('Poll'),
+   Question = mongoose.model('Question');
 
 module.exports = function(app) {
    app.use('/', router);
@@ -20,6 +21,9 @@ router.get('/polls', function(req, res) {
 
 // Ajoute un nouveau poll
 router.post('/polls', function(req, res) {
+
+   console.log(req);
+
    var newPoll = new Poll({
       title: req.body.title,
       state: req.body.state
@@ -61,4 +65,54 @@ router.get('/polls/:id', function(req, res) {
          poll: poll
       });
    });
+});
+
+
+// Retourne toutes les questions relatives au poll (:id)
+router.get('/polls/:id/questions', function(req, res) {
+   Question.find()
+      .where('polls').equals(req.params.id)
+      .exec(function(err, questions) {
+         res.send(questions);
+   });
+});
+
+// Supprime toutes les questions relatives au poll (:id)
+router.delete('/polls/:id/questions', function(req, res) {
+   Question.remove()
+      .where('polls').equals(req.params.id)
+      .exec(function(err) {
+         res.send('delete success');
+   });
+});
+
+// Ajoute une question dans le poll (:id)
+router.post('/polls/:id/questions', function(req, res) {
+   new Question({
+      title: req.body.title,
+      type: req.body.type,
+      polls: req.params.id
+   })
+   .save(function(err) {
+      if (err) {
+         console.log('Error');
+      }
+   });
+
+   res.send('post');
+});
+
+
+// Ajoute une question dans le poll (:id)
+router.post('/polls/:id/questions', function(req, res) {
+   new Question({
+      title: req.body.title,
+      type: req.body.type,
+      polls: req.params.id
+   })
+   .save(function(err) {
+      if (err) throw err;
+   });
+
+   res.send('post');
 });

@@ -2,16 +2,21 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var PollSchema = new Schema({
-   title: String,
+   title: {
+      type: String,
+      required: true
+   },
    creationDate: {
       type: Date,
       default: Date.now
    },
-   state: String
+   state: {
+      type: String,
+      required: true
+   }
 });
 
 mongoose.model('Poll', PollSchema);
-
 
 /* POUR LES TESTS */
 /*
