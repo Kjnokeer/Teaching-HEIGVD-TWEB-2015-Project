@@ -8,11 +8,11 @@ Welcome to the Mamathiva product web site.
 
 #### Members of the team : 
 
-* Dolt Mathias
-* Duchoud Thibaud
-* Ferreira Mario
+* Dolt Mathias - Fonctionnalités & code
+* Duchoud Thibaud - Fonctionnalités & code
+* Ferreira Mario - Mokup
 * Noubissi Parfait Plaisir De Pâques
-* Schaad Valentin
+* Schaad Valentin - Product page & documentation
 
 
 This website have been created with [Jekyll](http://jekyllrb.com/).

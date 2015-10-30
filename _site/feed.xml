@@ -6,9 +6,43 @@
 </description>
     <link>https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/</link>
     <atom:link href="https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 30 Oct 2015 14:32:49 +0100</pubDate>
-    <lastBuildDate>Fri, 30 Oct 2015 14:32:49 +0100</lastBuildDate>
+    <pubDate>Fri, 30 Oct 2015 15:40:55 +0100</pubDate>
+    <lastBuildDate>Fri, 30 Oct 2015 15:40:55 +0100</lastBuildDate>
     <generator>Jekyll v3.0.0</generator>
+    
+      <item>
+        <title>Mokup</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Kjnokeer/Teaching-HEIGVD-TWEB-2015-Project/master/mockup/mockup.jpg&quot; alt=&quot;mokup&quot; title=&quot;Modup&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 30 Oct 2015 15:26:18 +0100</pubDate>
+        <link>https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/mokup/2015/10/30/mokup.html</link>
+        <guid isPermaLink="true">https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/mokup/2015/10/30/mokup.html</guid>
+        
+        
+        <category>Mokup</category>
+        
+      </item>
+    
+      <item>
+        <title>User features</title>
+        <description>&lt;p&gt;Our product is usable by two types of users : registered and anonyms users.&lt;/p&gt;
+
+&lt;p&gt;Registered user will be able to create a poll and associate some questions. Once the poll is submitted a url is associed and should be given to people who should answer. The creator can view result in any time (a new url can be shared with anybody), edit or close definitively the poll.&lt;/p&gt;
+
+&lt;p&gt;Registration is free, user should just provide a valid email, a password and few personnal informations.&lt;/p&gt;
+
+&lt;p&gt;Anonyms user can only answer to poll send to them or see result if the owner have share the url.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 30 Oct 2015 14:23:18 +0100</pubDate>
+        <link>https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/futur/features/2015/10/30/futurfeatures.html</link>
+        <guid isPermaLink="true">https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/futur/features/2015/10/30/futurfeatures.html</guid>
+        
+        
+        <category>futur</category>
+        
+        <category>features</category>
+        
+      </item>
     
       <item>
         <title>Fonctionnalités à venir</title>
