@@ -8,7 +8,7 @@ var config = {
     app: {
       name: 'tweb'
     },
-    port: 3000,
+    port: process.env.PORT || 3000,
     db: 'mongodb://localhost/tweb-development'
   },
 
@@ -17,7 +17,7 @@ var config = {
     app: {
       name: 'tweb'
     },
-    port: 3000,
+    port: process.env.PORT || 3000,
     db: 'mongodb://localhost/tweb-test'
   },
 
@@ -26,7 +26,7 @@ var config = {
     app: {
       name: 'tweb'
     },
-    port: 3000,
+    port: process.env.PORT || 3000,
     db: 'mongodb://localhost/tweb-production'
   }
 };
