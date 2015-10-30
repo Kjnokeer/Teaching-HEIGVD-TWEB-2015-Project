@@ -20,14 +20,14 @@ var config = {
     port: 3000,
     db: 'mongodb://localhost/tweb-test'
   },
-  
+
   production: {
-	  root: rootPath,
-	  app: {
-		  name: 'tweb'
-	  },
-	  port: process.env.PORT,
-	  db: 'mongodb://admin:pass1234*@ds047524.mongolab.com:47524/heroku_l6n3q8x9'
+    root: rootPath,
+    app: {
+      name: 'tweb'
+    },
+    port: process.env.PORT,
+    db: 'mongodb://admin:pass1234*@ds047524.mongolab.com:47524/heroku_l6n3q8x9'
   }
 };
 
