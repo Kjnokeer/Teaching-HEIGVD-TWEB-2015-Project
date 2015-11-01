@@ -6,8 +6,8 @@
 </description>
     <link>https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/</link>
     <atom:link href="https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 30 Oct 2015 15:40:55 +0100</pubDate>
-    <lastBuildDate>Fri, 30 Oct 2015 15:40:55 +0100</lastBuildDate>
+    <pubDate>Sun, 01 Nov 2015 18:34:01 +0100</pubDate>
+    <lastBuildDate>Sun, 01 Nov 2015 18:34:01 +0100</lastBuildDate>
     <generator>Jekyll v3.0.0</generator>
     
       <item>
@@ -45,30 +45,27 @@
       </item>
     
       <item>
-        <title>Fonctionnalités à venir</title>
-        <description>&lt;p&gt;Le projet Mamathiva prévoit la possibilité créer un set de questions. Une fois le questionnaire terminé, une URL courte composée de minuscules, majuscules et chiffres doit être générée et peut être transmise aux personnes allant répondre.&lt;/p&gt;
+        <title>Project description</title>
+        <description>&lt;p&gt;Mamathiva is a project which permit to a speaker to create a set of questions and let the audience answer on their device (PC, phone, tablet) just by transmitting a short URL.&lt;/p&gt;
 
-&lt;p&gt;Pour pouvoir créer un questionnaire il est nécessaire de créer un compte sur le site, pour répondre aux questions, il peut être possible d’utiliser son compte ou de répondre avec un compte temporaire (un champ d’identification).&lt;/p&gt;
-
-&lt;p&gt;Le questionnaire doit permettre de créer des questions des types suivants :&lt;/p&gt;
+&lt;p&gt;Survey should permit to create 3 types of questions :&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Choix unique (radio-bouton)&lt;/li&gt;
-  &lt;li&gt;Choix multiple (checkbox)&lt;/li&gt;
-  &lt;li&gt;Réponse libre (text area)&lt;/li&gt;
+  &lt;li&gt;Unique choice (radio-button)&lt;/li&gt;
+  &lt;li&gt;Multiple choice (checkbox)&lt;/li&gt;
+  &lt;li&gt;Open answer (text area)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Il doit être possible pour chaque question d’ajouter une description et d’insérer une image.
-Les résultats associés aux questionnaires sont visible n’importe quand par le créateur du questionnaire, les réponses sont associées à une nouvelle URL qu’il peut partager avec les répondants.&lt;/p&gt;
+&lt;p&gt;For each question it should be possible to add a description and a picture. Results are visible at any time be the creator of the survey and can be shared with other people through an other URL.&lt;/p&gt;
 
-&lt;p&gt;Les résultats sont affichés sous forme de graphiques si possible : pour les choix uniques sous forme d’un camembert, pour les choix multiple sous forme de barres.&lt;/p&gt;
+&lt;p&gt;Results are diplayed with graphs if possible : for unique choice with a pie chart and muliple choices with bar graph.&lt;/p&gt;
 </description>
         <pubDate>Fri, 30 Oct 2015 14:23:18 +0100</pubDate>
-        <link>https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/fonctionnalites/futur/2015/10/30/description.html</link>
-        <guid isPermaLink="true">https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/fonctionnalites/futur/2015/10/30/description.html</guid>
+        <link>https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/features/futur/2015/10/30/description.html</link>
+        <guid isPermaLink="true">https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/features/futur/2015/10/30/description.html</guid>
         
         
-        <category>fonctionnalites</category>
+        <category>features</category>
         
         <category>futur</category>
         
