@@ -12,7 +12,13 @@
 [Add a question in a poll](#addQuestion)<br>
 [Edit a question](#editQuestion)<br>
 [Get a question](#getQuestion)<br>
-[Delete a question](#deleteQuestion)<br>
+[Delete a question](#deleteQuestion)<br><br>
+[Get choices in a question](#getChoices)<br>
+[Delete choices in a question](#deleteChoices)<br>
+[Add a choices in a question](#addChoice)<br>
+[Edit a choice](#editChoice)<br>
+[Get a choice](#getChoice)<br>
+[Delete a choice](#deleteChoice)<br>
 
 
 # <a name="getPolls"></a> **Get Polls**
@@ -607,6 +613,328 @@
   ```javascript
     $.ajax({
       url: "/polls/*/questions/56363e3ea9c49ee4030c5a2f",
+      type : "DELETE",
+      success : function(result) {
+        console.log(result);
+      }
+    });
+  ```
+  
+----
+
+# <a name="getChoices"></a> **Get choices in a question**
+
+  Get all choices in a specified questions.
+
+* **URL**
+
+  /polls/*/questions/{id}/choices
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+   
+   `id`
+
+* **Data Params**
+
+    None
+
+* **Success Response:**
+
+  * **Code:** 200
+  * **Content:** `[
+                    {
+                    _id: "56363e3ea9c49ee4030c5a32",
+                    key: "1234",
+                    text: "choix 1",
+                    questions: "56363e3ea9c49ee4030c5a2f"
+                    },
+                    {
+                    _id: "56363e3ea9c49ee4030c5a33",
+                    key: "4321",
+                    text: "choix 2",
+                    questions: "56363e3ea9c49ee4030c5a2f"
+                    }
+                ]`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND 
+
+
+* **Sample Call:**
+
+  ```javascript
+    $.ajax({
+      url: "/polls/*/questions/56363e3ea9c49ee4030c5a2f/choices",
+      type : "GET",
+      success : function(result) {
+        console.log(result);
+      }
+    });
+  ```
+  
+----
+
+# <a name="deleteChoices"></a> **Delete choices in a question**
+
+  Delete all choices in a specified questions.
+
+* **URL**
+
+  /polls/*/questions/{id}/choices
+
+* **Method:**
+
+  `DELETE`
+  
+*  **URL Params**
+
+   **Required:**
+   
+   `id`
+
+* **Data Params**
+
+    None
+
+* **Success Response:**
+
+  * **Code:** 200
+  * **Content:** `{ message: 'DELETE success'} `
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND 
+
+
+* **Sample Call:**
+
+  ```javascript
+    $.ajax({
+      url: "/polls/*/questions/56363e3ea9c49ee4030c5a2f/choices",
+      type : "DELETE",
+      success : function(result) {
+        console.log(result);
+      }
+    });
+  ```
+  
+----
+
+# <a name="addChoice"></a> **Add a choice in a question**
+
+  Add a choice in specified question.
+
+* **URL**
+
+  /polls/*/questions/{id}/choices
+
+* **Method:**
+
+  `POST`
+  
+*  **URL Params**
+
+   **Required:**
+   
+   `id`
+
+* **Data Params**
+
+    **Required:**
+    
+   `{
+        key: 'My key',
+        text: 'My text'
+    }`
+
+* **Success Response:**
+
+  * **Code:** 200
+  * **Content:** `{
+                        _id: "56363e3ea9c49ee4030c5a32",
+                        key: "My key",
+                        text: "My text",
+                        questions: "56363e3ea9c49ee4030c5a2f"
+                    }`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND 
+
+
+* **Sample Call:**
+
+  ```javascript
+    $.ajax({
+      url: "/polls/*/questions/56363e3ea9c49ee4030c5a2f/choices",
+      type : "POST",
+      data: {
+        key: 'My key',
+        text: 'My text'
+      },
+      success : function(result) {
+        console.log(result);
+      }
+    });
+  ```
+  
+----
+
+# <a name="editChoice"></a> **Edit a choice**
+
+  Edit a choice.
+
+* **URL**
+
+  /polls/*/questions/*/choices/{id}
+
+* **Method:**
+
+  `PUT`
+  
+*  **URL Params**
+
+   **Required:**
+   
+   `id`
+
+* **Data Params**
+
+    **Required:**
+    
+   `{
+        key: 'My new key',
+        text: 'My new text'
+    }`
+
+* **Success Response:**
+
+  * **Code:** 200
+  * **Content:** `{
+                        _id: "56363e3ea9c49ee4030c5a32",
+                        key: "My old key",
+                        text: "My old text",
+                        questions: "56363e3ea9c49ee4030c5a2f"
+                    }`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND 
+
+
+* **Sample Call:**
+
+  ```javascript
+    $.ajax({
+      url: "/polls/*/questions/*/choices/56363e3ea9c49ee4030c5a32",
+      type : "PUT",
+      data: {
+        key: 'My new key',
+        text: 'My new text'
+      },
+      success : function(result) {
+        console.log(result);
+      }
+    });
+  ```
+  
+----
+
+# <a name="getChoice"></a> **Get a choice**
+
+  Get a choice.
+
+* **URL**
+
+  /polls/*/questions/*/choices/{id}
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+   
+   `id`
+
+* **Data Params**
+
+    None
+
+* **Success Response:**
+
+  * **Code:** 200
+  * **Content:** `{
+                        _id: "56363e3ea9c49ee4030c5a32",
+                        key: "My key",
+                        text: "My text",
+                        questions: "56363e3ea9c49ee4030c5a2f"
+                    }`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND 
+
+
+* **Sample Call:**
+
+  ```javascript
+    $.ajax({
+      url: "/polls/*/questions/*/choices/56363e3ea9c49ee4030c5a32",
+      type : "GET",
+      success : function(result) {
+        console.log(result);
+      }
+    });
+  ```
+  
+----
+
+# <a name="deleteChoice"></a> **Delete a choice**
+
+  Delete a choice.
+
+* **URL**
+
+  /polls/*/questions/*/choices/{id}
+
+* **Method:**
+
+  `DELETE`
+  
+*  **URL Params**
+
+   **Required:**
+   
+   `id`
+
+* **Data Params**
+
+    None
+
+* **Success Response:**
+
+  * **Code:** 200
+  * **Content:** `{ message: 'DELETE success'}`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND 
+
+
+* **Sample Call:**
+
+  ```javascript
+    $.ajax({
+      url: "/polls/*/questions/*/choices/56363e3ea9c49ee4030c5a32",
       type : "DELETE",
       success : function(result) {
         console.log(result);
