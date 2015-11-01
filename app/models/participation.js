@@ -8,7 +8,7 @@ var ParticipationSchema = new Schema({
    },
    submissionDate: {
       type: Date,
-      required: true
+      default: Date.now
    },
    polls: {
       type: mongoose.Schema.ObjectId,
