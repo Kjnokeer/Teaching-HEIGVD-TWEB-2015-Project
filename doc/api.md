@@ -5,6 +5,8 @@
 [Delete polls](#deletePolls)<br>
 [Add a poll](#addPoll)<br>
 [Edit a poll](#editPoll)<br>
+[Get a poll](#getPoll)<br>
+[Delete a poll](#deletePoll)<br>
 
 # <a name="getPolls"></a> **Get Polls**
 
@@ -200,6 +202,98 @@
         title: 'My new title',
         state: 'closed'
       },
+      success : function(result) {
+        console.log(result);
+      }
+    });
+  ```
+  
+----
+
+# <a name="getPoll"></a> **Get a Poll**
+
+  Get a poll.
+
+* **URL**
+
+  /polls/{id}
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+   
+   `id`
+
+* **Data Params**
+
+    None
+    
+* **Success Response:**
+
+  * **Code:** 200
+  * **Content:** `{ _id: '2321d123ewr1r1', title: 'My title', state: 'state'}`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND 
+
+
+* **Sample Call:**
+
+  ```javascript
+    $.ajax({
+      url: "/polls/2321d123ewr1r1",
+      type : "GET",
+      success : function(result) {
+        console.log(result);
+      }
+    });
+  ```
+  
+----
+
+# <a name="deletePoll"></a> **Delete a Poll**
+
+  Delete a poll.
+
+* **URL**
+
+  /polls/{id}
+
+* **Method:**
+
+  `DELETE`
+  
+*  **URL Params**
+
+   **Required:**
+   
+   `id`
+
+* **Data Params**
+
+    None
+
+* **Success Response:**
+
+  * **Code:** 200
+  * **Content:** `{ message: 'DELETE success' }`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND 
+
+
+* **Sample Call:**
+
+  ```javascript
+    $.ajax({
+      url: "/polls/2321d123ewr1r1",
+      type : "DELETE",
       success : function(result) {
         console.log(result);
       }
