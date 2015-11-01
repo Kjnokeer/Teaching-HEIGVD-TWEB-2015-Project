@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 
    Poll.find(function(err, polls) {
       if (err) return next(err);
-
+      
       var nbPolls = polls.length;
       var nbPollsOpen = 0;
       var nbPollsCreatedThisWeek = 0;
