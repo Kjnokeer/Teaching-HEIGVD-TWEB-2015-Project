@@ -1,7 +1,7 @@
 # **REST API documentation**
 
 ## **Index**
-[Show polls](#test)<br><br>
+[Show polls](#test)
 
 # <a name="test"></a> **Show Polls**
 
