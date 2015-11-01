@@ -9,7 +9,9 @@ Welcome to the home of the TWEB Project. This is where you will find information
 - Noubissi Parfait Plaisir De Pâques
 - Schaad Valentin
 
-https://tweb-project-mamathiva.herokuapp.com/
+Heroku URL : https://tweb-project-mamathiva.herokuapp.com/
+
+GitHub Pages (Jekyll) : https://kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/
 
 ## How to use this repo
 
