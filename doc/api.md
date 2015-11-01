@@ -6,7 +6,11 @@
 [Add a poll](#addPoll)<br>
 [Edit a poll](#editPoll)<br>
 [Get a poll](#getPoll)<br>
-[Delete a poll](#deletePoll)<br>
+[Delete a poll](#deletePoll)<br><br>
+[Get questions in a poll](#getQuestions)<br>
+[Delete questions in a poll](#deleteQuestions)<br>
+[Add a question in a poll](#addQuestion)<br>
+
 
 # <a name="getPolls"></a> **Get Polls**
 
@@ -32,8 +36,8 @@
 
   * **Code:** 200
   * **Content:** `[
-        { _id: '23232dsad1acevd42', title: 'title', type: 'active' },
-        { _id: '223saide3j2391i39', title: 'title 2', type: 'closed'}
+        { _id: '56363e3ea9c49ee4030c5a2c', title: 'title', type: 'active' },
+        { _id: '56363e3ea9c49ee4030c5ae1', title: 'title 2', type: 'closed'}
     ]
     `
  
@@ -130,7 +134,7 @@
 * **Success Response:**
 
   * **Code:** 200
-  * **Content:** `{ _id: '2321d123ewr1r1', title: 'My title', state: 'active'}`
+  * **Content:** `{ _id: '56363e3ea9c49ee4030c5a2c', title: 'My title', state: 'active'}`
  
 * **Error Response:**
 
@@ -185,7 +189,7 @@
 * **Success Response:**
 
   * **Code:** 200
-  * **Content:** `{ _id: '2321d123ewr1r1', title: 'Old title', state: 'Old state'}`
+  * **Content:** `{ _id: '56363e3ea9c49ee4030c5a2c', title: 'Old title', state: 'Old state'}`
  
 * **Error Response:**
 
@@ -196,7 +200,7 @@
 
   ```javascript
     $.ajax({
-      url: "/polls/2321d123ewr1r1",
+      url: "/polls/56363e3ea9c49ee4030c5a2c",
       type : "PUT",
       data: {
         title: 'My new title',
@@ -235,7 +239,7 @@
 * **Success Response:**
 
   * **Code:** 200
-  * **Content:** `{ _id: '2321d123ewr1r1', title: 'My title', state: 'state'}`
+  * **Content:** `{ _id: '56363e3ea9c49ee4030c5a2c', title: 'My title', state: 'state'}`
  
 * **Error Response:**
 
@@ -246,7 +250,7 @@
 
   ```javascript
     $.ajax({
-      url: "/polls/2321d123ewr1r1",
+      url: "/polls/56363e3ea9c49ee4030c5a2c",
       type : "GET",
       success : function(result) {
         console.log(result);
@@ -292,8 +296,168 @@
 
   ```javascript
     $.ajax({
-      url: "/polls/2321d123ewr1r1",
+      url: "/polls/56363e3ea9c49ee4030c5a2c",
       type : "DELETE",
+      success : function(result) {
+        console.log(result);
+      }
+    });
+  ```
+  
+----
+
+# <a name="getQuestions"></a> **Get questions in a poll**
+
+  Get all questions in a specified poll.
+
+* **URL**
+
+  /polls/{id}/questions
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+   
+   `id`
+
+* **Data Params**
+
+    None
+
+* **Success Response:**
+
+  * **Code:** 200
+  * **Content:** `[
+                    {
+                    _id: "56363e3ea9c49ee4030c5a2f",
+                    title: "My question title 1 ?",
+                    type: "free",
+                    polls: "56363e3ea9c49ee4030c5a2c"
+                    },
+                    {
+                    _id: "56363e3ea9c49ee4030c5a30",
+                    title: "My question title 2",
+                    type: "optional",
+                    polls: "56363e3ea9c49ee4030c5a2c"
+                    }
+                ]`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND 
+
+
+* **Sample Call:**
+
+  ```javascript
+    $.ajax({
+      url: "/polls/56363e3ea9c49ee4030c5a2c/questions",
+      type : "GET",
+      success : function(result) {
+        console.log(result);
+      }
+    });
+  ```
+  
+----
+
+# <a name="deleteQuestions"></a> **Delete questions in a poll**
+
+  Delete all questions in a specified poll.
+
+* **URL**
+
+  /polls/{id}/questions
+
+* **Method:**
+
+  `DELETE`
+  
+*  **URL Params**
+
+   **Required:**
+   
+   `id`
+
+* **Data Params**
+
+    None
+
+* **Success Response:**
+
+  * **Code:** 200
+  * **Content:** `{ message: 'DELETE success' }`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND 
+
+
+* **Sample Call:**
+
+  ```javascript
+    $.ajax({
+      url: "/polls/56363e3ea9c49ee4030c5a2c/questions",
+      type : "DELETE",
+      success : function(result) {
+        console.log(result);
+      }
+    });
+  ```
+  
+----
+
+# <a name="addQuestion"></a> **Add a question in a poll**
+
+  Add a question in a specified poll.
+
+* **URL**
+
+  /polls/{id}/questions
+
+* **Method:**
+
+  `POST`
+  
+*  **URL Params**
+
+   **Required:**
+   
+   `id`
+
+* **Data Params**
+
+    **Required:**
+    
+   `{
+        title: 'My question title',
+        type: 'free'
+    }`
+
+* **Success Response:**
+
+  * **Code:** 200
+  * **Content:** ``{ _id: '56363e3ea9c49ee4030c5a2f', title: ''My question title', state: 'free', polls: '56363e3ea9c49ee4030c5a2c'}``
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND 
+
+
+* **Sample Call:**
+
+  ```javascript
+    $.ajax({
+      url: "/polls/56363e3ea9c49ee4030c5a2c/questions",
+      type : "POST",
+      data: {
+        title: 'My question title',
+        type: 'free'
+      },
       success : function(result) {
         console.log(result);
       }
