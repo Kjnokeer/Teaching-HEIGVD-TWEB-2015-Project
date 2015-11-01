@@ -10,6 +10,9 @@
 [Get questions in a poll](#getQuestions)<br>
 [Delete questions in a poll](#deleteQuestions)<br>
 [Add a question in a poll](#addQuestion)<br>
+[Edit a question](#editQuestion)<br>
+[Get a question](#getQuestion)<br>
+[Delete a question](#deleteQuestion)<br>
 
 
 # <a name="getPolls"></a> **Get Polls**
@@ -458,6 +461,153 @@
         title: 'My question title',
         type: 'free'
       },
+      success : function(result) {
+        console.log(result);
+      }
+    });
+  ```
+  
+----
+
+# <a name="editQuestion"></a> **Edit a question**
+
+  Edit a specified question.
+
+* **URL**
+
+  /polls/*/questions/{id}
+
+* **Method:**
+
+  `PUT`
+  
+*  **URL Params**
+
+   **Required:**
+   
+   `id`
+
+* **Data Params**
+
+    **Required:**
+    
+   `{
+        title: 'My new question title',
+        type: 'optional'
+    }`
+
+* **Success Response:**
+
+  * **Code:** 200
+  * **Content:** ``{ _id: '56363e3ea9c49ee4030c5a2f', title: ''My old question title', state: 'old state', polls: '56363e3ea9c49ee4030c5a2c'}``
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND 
+
+
+* **Sample Call:**
+
+  ```javascript
+    $.ajax({
+      url: "/polls/*/questions/56363e3ea9c49ee4030c5a2f",
+      type : "PUT",
+      data: {
+        title: 'My new question title',
+        type: 'optional'
+      },
+      success : function(result) {
+        console.log(result);
+      }
+    });
+  ```
+  
+----
+
+# <a name="addQuestion"></a> **Get a question**
+
+  Get a specified question.
+
+* **URL**
+
+  /polls/*/questions/{id}
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+   
+   `id`
+
+* **Data Params**
+
+    None
+
+* **Success Response:**
+
+  * **Code:** 200
+  * **Content:** ``{ _id: '56363e3ea9c49ee4030c5a2f', title: ''My question title', state: 'free', polls: '56363e3ea9c49ee4030c5a2c'}``
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND 
+
+
+* **Sample Call:**
+
+  ```javascript
+    $.ajax({
+      url: "/polls/*/questions/56363e3ea9c49ee4030c5a2f",
+      type : "GET",
+      success : function(result) {
+        console.log(result);
+      }
+    });
+  ```
+  
+----
+
+# <a name="deleteQuestion"></a> **Delete a question**
+
+  Delete a specified question.
+
+* **URL**
+
+  /polls/*/questions/{id}
+
+* **Method:**
+
+  `DELETE`
+  
+*  **URL Params**
+
+   **Required:**
+   
+   `id`
+
+* **Data Params**
+
+    None
+
+* **Success Response:**
+
+  * **Code:** 200
+  * **Content:** ``{ message: 'DELETE success'}``
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND 
+
+
+* **Sample Call:**
+
+  ```javascript
+    $.ajax({
+      url: "/polls/*/questions/56363e3ea9c49ee4030c5a2f",
+      type : "DELETE",
       success : function(result) {
         console.log(result);
       }
