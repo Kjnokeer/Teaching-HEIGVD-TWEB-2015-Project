@@ -53,7 +53,7 @@
     });
   ```
 ----
-  # <a name="deletePolls"></a> **Delete Polls**
+# <a name="deletePolls"></a> **Delete Polls**
 
   Delete all polls.
 
@@ -96,7 +96,7 @@
   ```
   
 ----
-  # <a name="addPoll"></a> **Add a Poll**
+# <a name="addPoll"></a> **Add a Poll**
 
   Add a poll.
 
@@ -149,7 +149,7 @@
   ```
 
 ----
-  # <a name="editPoll"></a> **Edit a Poll**
+# <a name="editPoll"></a> **Edit a Poll**
 
   Edit a poll.
 
