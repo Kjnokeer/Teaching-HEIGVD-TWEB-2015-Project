@@ -38,7 +38,7 @@ router.delete('/polls', function(req, res, next) {
       .exec(function(err) {
          if (err) return next(err);
 
-         res.send('DELETE success');
+         res.send({ message: 'DELETE success'});
       });
 });
 
@@ -49,7 +49,7 @@ router.delete('/polls/:id', function(req, res, next) {
    }, function(err) {
       if (err) return next(err);
 
-      res.send('DELETE success');
+      res.send({ message: 'DELETE success'});
    });
 });
 
@@ -94,7 +94,7 @@ router.delete('/polls/:id/questions', function(req, res, next) {
       .exec(function(err) {
          if (err) return next(err);
 
-         res.send('delete success');
+         res.send({ message: 'DELETE success'});
       });
 });
 
@@ -128,7 +128,7 @@ router.delete('/polls/*/questions/:id', function(req, res, next) {
       .exec(function(err) {
          if (err) return next(err);
 
-         res.send('delete success');
+         res.send({ message: 'DELETE success'});
       });
 });
 
@@ -140,7 +140,7 @@ router.put('/polls/*/questions/:id', function(req, res, next) {
    }, function(err, model) {
       if (err) return next(err);
 
-      res.send('PUT success');
+      res.send(model);
    });
 });
 
@@ -164,7 +164,7 @@ router.delete('/polls/*/questions/:id/choices', function(req, res, next) {
       .exec(function(err) {
          if (err) return next(err);
 
-         res.send('delete success');
+         res.send({ message: 'DELETE success'});
       });
 });
 
@@ -198,7 +198,7 @@ router.delete('/polls/*/questions/*/choices/:id', function(req, res, next) {
       .exec(function(err) {
          if (err) return next(err);
 
-         res.send('delete success');
+         res.send({ message: 'DELETE success'});
       });
 });
 
@@ -210,6 +210,6 @@ router.put('/polls/*/questions/*/choices/:id', function(req, res, next) {
    }, function(err, model) {
       if (err) return next(err);
 
-      res.send('PUT success');
+      res.send(model);
    });
 });
