@@ -3,7 +3,7 @@
 ## **Index**
 [Show polls]()
 
-**Show Polls**
+# <a name="test"></a> **Show Polls**
 ----
   Returns json array of polls.
 
