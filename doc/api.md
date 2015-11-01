@@ -4,7 +4,7 @@
 [Show polls](#test)
 
 # <a name="test"></a> **Show Polls**
-----
+
   Returns json array of polls.
 
 * **URL**
