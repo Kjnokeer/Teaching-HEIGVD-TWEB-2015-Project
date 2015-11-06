@@ -3,6 +3,8 @@ var express = require('express'),
    mongoose = require('mongoose'),
    Poll = mongoose.model('Poll');
 
+var path = require('path');
+
 module.exports = function(app) {
    app.use('/', router);
 };
@@ -26,6 +28,8 @@ router.get('/', function(req, res, next) {
             nbPollsCreatedThisWeek++;
       }
 
+      res.sendFile(path.join(__dirname, '../views', 'index.html'));
+/*
       res.render('index', {
 
          title: 'PollY - Easy Polls',
@@ -34,5 +38,7 @@ router.get('/', function(req, res, next) {
          nbPollsCreatedThisWeek: nbPollsCreatedThisWeek
 
       });
+      */
    });
+
 });
