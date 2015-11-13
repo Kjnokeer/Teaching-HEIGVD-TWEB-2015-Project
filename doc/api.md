@@ -47,10 +47,10 @@
   * **Content:** 
 
   ~~~json
-[
+{[
         { _id: '56363e3ea9c49ee4030c5a2c', title: 'title', type: 'active' },
         { _id: '56363e3ea9c49ee4030c5ae1', title: 'title 2', type: 'closed'}
-]
+]}
 ~~~ 
 
     `[
