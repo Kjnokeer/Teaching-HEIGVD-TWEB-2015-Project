@@ -1,0 +1,20 @@
+<div class="wrapper">
+    <div class="box">
+        <div class="row">
+            <!-- sidebar -->
+            <div class="column col-sm-3" id="sidebar">
+                <a class="logo" href="{{ site.baseurl }}/">M</a>
+				
+                <ul class="nav">
+					{% for my_page in site.pages %}
+						{% if my_page.title %}
+							<li class="active"><a href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a></li>
+						{% endif %}
+					{% endfor %}
+                </ul>
+                <ul class="nav hidden-xs" id="sidebar-footer">
+                    <li>
+                      <a href="https://tweb-project-mamathiva.herokuapp.com/"><h3>Notre produit</h3>Mamathiva</a>
+                    </li>
+                </ul>
+            </div>

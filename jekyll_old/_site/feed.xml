@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mamathiva</title>
+    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</description>
+    <link>https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/</link>
+    <atom:link href="https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 01 Nov 2015 18:34:01 +0100</pubDate>
+    <lastBuildDate>Sun, 01 Nov 2015 18:34:01 +0100</lastBuildDate>
+    <generator>Jekyll v3.0.0</generator>
+    
+      <item>
+        <title>Mokup</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Kjnokeer/Teaching-HEIGVD-TWEB-2015-Project/master/mockup/mockup.jpg&quot; alt=&quot;mokup&quot; title=&quot;Modup&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 30 Oct 2015 15:26:18 +0100</pubDate>
+        <link>https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/mokup/2015/10/30/mokup.html</link>
+        <guid isPermaLink="true">https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/mokup/2015/10/30/mokup.html</guid>
+        
+        
+        <category>Mokup</category>
+        
+      </item>
+    
+      <item>
+        <title>User features</title>
+        <description>&lt;p&gt;Our product is usable by two types of users : registered and anonyms users.&lt;/p&gt;
+
+&lt;p&gt;Registered user will be able to create a poll and associate some questions. Once the poll is submitted a url is associed and should be given to people who should answer. The creator can view result in any time (a new url can be shared with anybody), edit or close definitively the poll.&lt;/p&gt;
+
+&lt;p&gt;Registration is free, user should just provide a valid email, a password and few personnal informations.&lt;/p&gt;
+
+&lt;p&gt;Anonyms user can only answer to poll send to them or see result if the owner have share the url.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 30 Oct 2015 14:23:18 +0100</pubDate>
+        <link>https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/futur/features/2015/10/30/futurfeatures.html</link>
+        <guid isPermaLink="true">https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/futur/features/2015/10/30/futurfeatures.html</guid>
+        
+        
+        <category>futur</category>
+        
+        <category>features</category>
+        
+      </item>
+    
+      <item>
+        <title>Project description</title>
+        <description>&lt;p&gt;Mamathiva is a project which permit to a speaker to create a set of questions and let the audience answer on their device (PC, phone, tablet) just by transmitting a short URL.&lt;/p&gt;
+
+&lt;p&gt;Survey should permit to create 3 types of questions :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Unique choice (radio-button)&lt;/li&gt;
+  &lt;li&gt;Multiple choice (checkbox)&lt;/li&gt;
+  &lt;li&gt;Open answer (text area)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For each question it should be possible to add a description and a picture. Results are visible at any time be the creator of the survey and can be shared with other people through an other URL.&lt;/p&gt;
+
+&lt;p&gt;Results are diplayed with graphs if possible : for unique choice with a pie chart and muliple choices with bar graph.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 30 Oct 2015 14:23:18 +0100</pubDate>
+        <link>https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/features/futur/2015/10/30/description.html</link>
+        <guid isPermaLink="true">https://Kjnokeer.github.io/Teaching-HEIGVD-TWEB-2015-Project/features/futur/2015/10/30/description.html</guid>
+        
+        
+        <category>features</category>
+        
+        <category>futur</category>
+        
+      </item>
+    
+  </channel>
+</rss>

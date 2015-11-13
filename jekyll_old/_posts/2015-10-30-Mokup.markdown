@@ -1,0 +1,10 @@
+---
+layout: post
+title:  "Mokup"
+date:   2015-10-30 15:26:18 +0100
+categories: Mokup
+author: Mario Ferreira
+---
+
+
+![mokup](https://raw.githubusercontent.com/Kjnokeer/Teaching-HEIGVD-TWEB-2015-Project/master/mockup/mockup.jpg "Modup")
