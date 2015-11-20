@@ -3,9 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+	"postinstall": "./node_modules/bower/bin/bower install"
   },
   "dependencies": {
+    "bower": "^1.6.5",
     "express": "^4.13.3",
     "serve-favicon": "^2.3.0",
     "morgan": "^1.6.1",
