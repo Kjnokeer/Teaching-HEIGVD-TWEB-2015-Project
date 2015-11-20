@@ -9,7 +9,9 @@ module.exports = function(app) {
    app.use('/', router);
 };
 
-// Affiche la page d'accueil
+/**
+ NE FAIT RIEN POUR L INSTANT
+**/
 router.get('/', function(req, res, next) {
 
    Poll.find(function(err, polls) {
@@ -28,8 +30,7 @@ router.get('/', function(req, res, next) {
             nbPollsCreatedThisWeek++;
       }
 
-      
-      res.sendFile(path.join(__dirname, '/public/', 'index.html'));
+      res.sendFile(path.join(__dirname, '../views/', 'login.html'));
 /*
       res.render('index', {
 
