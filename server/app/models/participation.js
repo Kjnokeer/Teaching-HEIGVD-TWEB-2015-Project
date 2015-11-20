@@ -13,6 +13,10 @@ var ParticipationSchema = new Schema({
    polls: {
       type: mongoose.Schema.ObjectId,
       ref: 'Poll'
+   },
+   users: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User'
    }
 });
 

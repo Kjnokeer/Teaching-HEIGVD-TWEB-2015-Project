@@ -28,7 +28,8 @@ router.get('/', function(req, res, next) {
             nbPollsCreatedThisWeek++;
       }
 
-      res.sendFile(path.join(__dirname, '../views', 'index.html'));
+      
+      res.sendFile(path.join(__dirname, '/public/', 'index.html'));
 /*
       res.render('index', {
 
