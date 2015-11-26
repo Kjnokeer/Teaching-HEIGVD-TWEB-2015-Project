@@ -14,6 +14,7 @@ module.exports = function(app, config) {
   app.locals.ENV_DEVELOPMENT = env == 'development';
 
   app.set('views', config.root + '/app/views');
+  app.engine('html', require('ejs').renderFile);
   app.set('view engine', 'html');
 
   // app.use(favicon(config.root + '/public/img/favicon.ico'));
