@@ -10,5 +10,6 @@ module.exports = function(app) {
 };
 
 router.get('/', function(req, res, next) {
-   res.sendFile(path.join(__dirname, '../views/', 'index.html'));
+   res.render('home/index');
+   //res.sendFile(path.join(__dirname, '../views/home/', 'index.html'));
 });
