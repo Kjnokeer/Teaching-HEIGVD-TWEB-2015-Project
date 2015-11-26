@@ -13,6 +13,10 @@ var PollSchema = new Schema({
    state: {
       type: String,
       required: true
+   },
+   users: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User'
    }
 });
 
