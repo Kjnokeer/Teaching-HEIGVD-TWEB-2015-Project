@@ -10,6 +10,5 @@ module.exports = function(app) {
 };
 
 router.get('/', function(req, res, next) {
-   res.render('home/index', {test: 'mon message'});
-   //res.sendFile(path.join(__dirname, '../views/home/', 'index.html'));
+   res.render('home/index');
 });

@@ -89,9 +89,12 @@
       </section>
 
       <!-- Content -->
-      <div id='content' ui-view>
-        <h1>Questionnaire</h1>
+    <div id='content'>
+      <section ui-view></section>
     </div>
+
+
+
     <!-- Footer -->
     <!-- Javascripts -->
     <script src="js/jquery/jquery.min.js"></script>
@@ -106,9 +109,12 @@
     <!-- Google Analytics -->
 
     <script>
-     angular.module("app", ["chart.js", "ui.router", "ncy-angular-breadcrumb"])
-       .factory('socket', function (socketFactory) {
-         return socketFactory();
+      angular.module("app", ["chart.js", "ui.router", "ncy-angular-breadcrumb"])
+       .factory('socket', function(socketFactory) {
+          return socketFactory();
+       })
+       .controller('PollsCtrl', function($scope, $http) {
+          $http.get("/polls").then(function(response) {$scope.polls = response.data;});
        })
        .config(function($stateProvider) {
           $stateProvider.state('home', {
@@ -116,28 +122,28 @@
              url: '/home',
              ncyBreadcrumb: {
                 label: 'Home'
-              }
+             }
           });
           $stateProvider.state('questionnaires', {
              templateUrl: 'partials/home/questionnaires.html',
              url: '/questionnaires',
              ncyBreadcrumb: {
                 label: 'Questionnaires'
-              }
+             }
           });
           $stateProvider.state('statistiques', {
              templateUrl: 'partials/home/statistiques.html',
              url: '/statistiques',
              ncyBreadcrumb: {
                 label: 'Statistiques'
-              }
+             }
           });
           $stateProvider.state('gestion', {
              templateUrl: 'partials/home/gestion.html',
              url: '/gestion',
              ncyBreadcrumb: {
                 label: 'Gestion du compte'
-              }
+             }
           });
        });
     </script>

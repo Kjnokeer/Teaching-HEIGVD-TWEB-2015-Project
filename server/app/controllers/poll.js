@@ -198,7 +198,7 @@ router.delete('/polls/*/questions/*/choices/:id', function(req, res, next) {
       .exec(function(err) {
          if (err) return next(err);
 
-         res.send({ message: 'DELETE success'});
+         res.send({ message: 'DELETE success' });
       });
 });
 
