@@ -11,13 +11,14 @@
     <link href="assets/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/chart/angular-chart.css">
-    <link href="assets/images/favicon.ico" rel="icon" type="image/ico" />
+    <link href="assets/images/logo_t.png" rel="icon" type="image/ico" />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body class='main page' ng-app="app">
     <!-- Navbar -->
     <div class='navbar navbar-default' id='navbar'>
       <a class='navbar-brand' ui-sref="home">
-        <i><img src="assets/images/logo.png" width="33px"></i>
+        <i><img src="assets/images/logo_t.png" width="32px"></i>
         MaMaThiVa - Easy Polls
       </a>
       <ul class='nav navbar-nav pull-right'>
@@ -121,7 +122,7 @@
              templateUrl: 'partials/home/questionnaires.html',
              url: '/questionnaires',
              ncyBreadcrumb: {
-                label: 'Questions'
+                label: 'Questionnaires'
               }
           });
           $stateProvider.state('statistiques', {
@@ -135,7 +136,7 @@
              templateUrl: 'partials/home/gestion.html',
              url: '/gestion',
              ncyBreadcrumb: {
-                label: 'Gestion'
+                label: 'Gestion du compte'
               }
           });
        });
