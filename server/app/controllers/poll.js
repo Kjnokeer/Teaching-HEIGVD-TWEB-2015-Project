@@ -11,7 +11,7 @@ module.exports = function(app) {
 
 // Affiche les polls
 router.get('/polls', function(req, res, next) {
-   Poll.find(function(err, polls) {
+   Poll.find({access: 'public'}, function(err, polls) {
       if (err) return next(err);
 
       res.send(polls);

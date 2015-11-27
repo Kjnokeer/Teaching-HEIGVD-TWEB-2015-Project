@@ -10,6 +10,11 @@ var PollSchema = new Schema({
       type: Date,
       default: Date.now
    },
+   access: {
+     type: String,
+     default: 'private',
+     required: true
+   },
    state: {
       type: String,
       required: true
