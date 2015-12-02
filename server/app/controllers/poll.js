@@ -9,8 +9,22 @@ module.exports = function(app) {
    app.use('/', router);
 };
 
+var requireLogin = require('./login.js');
+
+console.log("Adding middleware...");
+
+
+// for testing 
+// router.use('/',function (req, res, next) {
+//   console.log('Time: *********************************** ', Date.now());
+//   next();
+// });
+
+
+
 // Affiche les polls
-router.get('/polls', function(req, res, next) {
+router.get('/polls' , function(req, res, next) {
+  // console.log(requireLogin(req, res, next));
    Poll.find(function(err, polls) {
       if (err) return next(err);
 
@@ -18,8 +32,10 @@ router.get('/polls', function(req, res, next) {
    });
 });
 
+
+
 // Ajoute un nouveau poll
-router.post('/polls', function(req, res, next) {
+router.post('/polls', requireLogin, function(req, res, next) {
 
    var newPoll = new Poll({
       title: req.body.title,
