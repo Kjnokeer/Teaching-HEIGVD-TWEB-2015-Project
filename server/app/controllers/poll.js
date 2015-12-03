@@ -14,11 +14,6 @@ var requireLogin = require('./login.js');
 console.log("Adding middleware...");
 
 
-// for testing 
-// router.use('/',function (req, res, next) {
-//   console.log('Time: *********************************** ', Date.now());
-//   next();
-// });
 
 
 

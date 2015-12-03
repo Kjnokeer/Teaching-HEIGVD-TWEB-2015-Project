@@ -27,9 +27,7 @@ router.use(sessions({
   secret: 'sfdasasdkjsjsfnskldfjsidfisfelsjfkesfk',
   duration: 30 * 60 * 1000,
   activeDuration: 5 * 60 * 1000,
-  // httpOnly: true, // dont let browser javascript access cookie ever
-  // secure: true,    // only use cookies over https
-  ephemeral: true // delete this cookie when the browser is closed (this is usefull when people are using public computers)
+  // ephemeral: true // delete this cookie when the browser is closed (this is usefull when people are using public computers)
 }));
 
 
@@ -46,9 +44,6 @@ router.use(function(req, res, next){
       next();
     });
   } else{
-    // if ( req.path == '/') 
-      //   return next();
-    // res.render('home/login');
     next();
   }
 });
@@ -58,8 +53,6 @@ router.use(function(req, res, next){
 
 function requireLogin(req, res, next){
   if (!req.user && req.path != '/'){
-    // res.render('home/login');
-    // res.render('/login'#<{(| , {test: 'mon message'} |)}>#);
     res.render('home/index'/* , {test: 'mon message'} */);
     // res.render('home/index'#<{(| , {test: 'mon message'} |)}>#);
   } else{
