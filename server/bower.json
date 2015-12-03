@@ -9,6 +9,7 @@
   "dependencies": {
     "bootstrap": "~3.3.5",
     "angular": "~1.4.8",
-    "angular-breadcrumb": "~0.4.1"
+    "angular-breadcrumb": "~0.4.1",
+    "bootstrap-toggle": "~2.2.1"
   }
 }
