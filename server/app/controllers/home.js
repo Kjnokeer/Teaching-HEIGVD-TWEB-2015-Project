@@ -1,14 +1,28 @@
 var express = require('express'),
-   router = express.Router(),
-   mongoose = require('mongoose'),
-   Poll = mongoose.model('Poll');
+   router = express.Router();
 
-var path = require('path');
 
 module.exports = function(app) {
    app.use('/', router);
 };
 
+/** Attrape toutes les routes **/
+router.use('/', function(req, res, next) {
+   if(req.path === '/login' || req.path === '/signUp' || req.path.substring(0, 4) === "/api")
+      next();
+   else if(req.session.email)
+      if(req.path === '/')
+         res.render('home/index', {email: req.session.email});
+      else
+         next();
+   else
+      res.render('login/index');
+});
+
 router.get('/', function(req, res, next) {
-   res.render('home/index');
+   res.render('login/index');
+});
+
+router.get('/home', function(req, res, next) {
+   res.render('home/index', {email: req.session.email});
 });

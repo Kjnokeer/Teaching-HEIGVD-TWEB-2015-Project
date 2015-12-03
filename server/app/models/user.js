@@ -21,3 +21,15 @@ var UserSchema = new Schema({
 });
 
 mongoose.model('User', UserSchema);
+/*
+var User = mongoose.model('User', UserSchema);
+
+var u = new User({
+   email: "john@doe.com",
+   firstname: "John",
+   lastname: "Doe",
+   password: "pass"
+});
+u.save(function(err) {
+
+});*/
