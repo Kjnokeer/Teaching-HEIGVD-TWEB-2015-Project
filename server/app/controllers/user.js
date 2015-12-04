@@ -18,10 +18,10 @@ router.get('/api/user', function(req, res, next) {
 });
 
 router.post('/user/polls', function(req, res, next) {
+
    var newPoll = new Poll({
       title: req.body.title,
       state: req.body.state,
-      access: req.body.access,
       users: req.session.userId
    });
    newPoll.save(function(err) {

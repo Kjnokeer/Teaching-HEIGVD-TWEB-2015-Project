@@ -12,7 +12,7 @@ var PollSchema = new Schema({
    },
    access: {
      type: String,
-     default: 'private',
+     default: 'public',
      required: true
    },
    state: {

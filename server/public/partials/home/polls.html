@@ -1,0 +1,70 @@
+<div ng-controller="PollsCtrl" data-ng-init="loadPolls()">
+   <div class='wrapper' >
+      <div class='row'>
+         <div class='col-lg-12'>
+            <legend class='text-center'>List of polls</legend>
+            <table class='table'>
+               <thead>
+                  <tr>
+                     <th>#</th>
+                     <th>Title</th>
+                     <th>Création date</th>
+                     <th>Access</th>
+                     <th class='actions'>
+                        Actions
+                     </th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr ng-repeat="poll in polls">
+                     <td>{{poll._id}}</td>
+                     <td>{{poll.title}}</td>
+                     <td>{{poll.creationDate}}</td>
+                     <td>{{poll.access}}
+                        <td class='action'>
+                           <a class='btn btn-info' ng-click='editPoll(poll._id)'>
+                              <i class='icon-edit'></i>
+                           </a>
+                           <a class='btn btn-danger' ng-click='deletePoll(poll._id)'>
+                             <i class='icon-trash'></i>
+                           </a>
+                           <a ng-class="{true: 'btn-success', false:'btn-danger'} [poll.state==='active']" class='btn' titlePoll="{{poll.title}}" statePoll="{{poll.state}}" idPoll="{{poll._id}}" onclick="changeState(this)">
+                              <span>{{poll.state}}</span>
+                           </a>
+                        </td>
+                     </tr>
+               </tbody>
+               </table>
+               <button type="submit" class="btn btn-primary btn-block" ui-sref="createPoll">Create a poll</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+<script>
+      function changeState(elem) {
+         var id = $(elem).attr('idPoll');
+         var state = $(elem).attr('statePoll');
+         var title = $(elem).attr('titlePoll');
+         var newState = (state == "active" ? "closed" : "active");
+         var kid = $(elem).children();
+         $.ajax({
+            type: "PUT",
+            url: "/api/polls/" + id,
+            data: {
+               title: title,
+               state: newState
+            }
+         });
+         kid.html(newState);
+         if (newState == "active") {
+            $(elem).attr('statePoll', newState);
+            $(elem).removeClass("btn-danger");
+            $(elem).addClass("btn-success");
+         } else {
+            $(elem).attr('statePoll', newState);
+            $(elem).removeClass("btn-success");
+            $(elem).addClass("btn-danger");
+         }
+      }
+   </script>
