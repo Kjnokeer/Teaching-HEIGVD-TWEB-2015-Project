@@ -15,7 +15,13 @@ router.use('/', function(req, res, next) {
          res.render('home/index', {email: req.session.email});
       else
          next();
-   else
+   else if(req.path === '/audience'){
+     if(req.query.polls !== undefined){
+        res.render('audience/index', {params: req.query});
+     } else {
+        res.render('audience/error');
+     }
+   } else
       res.render('login/index');
 });
 
