@@ -14,9 +14,9 @@ var ParticipationSchema = new Schema({
       type: mongoose.Schema.ObjectId,
       ref: 'Poll'
    },
-   users: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'User'
+   user: {
+      type: String,
+      default: 'anonymous'
    }
 });
 
