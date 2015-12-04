@@ -6,6 +6,7 @@ module.exports = function(app) {
    app.use('/', router);
 };
 
+
 /** Attrape toutes les routes **/
 router.post('/audience', function(req, res, next) {
 
@@ -15,5 +16,14 @@ router.post('/audience', function(req, res, next) {
 
 	// Va chercher dans les partials
 	res.render('audience/question');
+
+
+
+});
+
+
+
+router.get('/audience', function(req, res, next) {
+  res.render('audience/index');
 
 });
