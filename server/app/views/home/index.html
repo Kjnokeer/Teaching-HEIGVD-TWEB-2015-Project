@@ -117,6 +117,7 @@
           return socketFactory();
        })
        .controller('PollsCtrl', function($scope, $http, $state) {
+
           $scope.loadPolls = function() {
             $http.get("/user/polls").then(function(response) {
               $scope.polls = response.data;
@@ -140,7 +141,7 @@
               state: $scope.state
             });
 
-            $state.go('polls');
+            $state.go('createQuestion');
           }
 
        })
@@ -178,6 +179,13 @@
              url: '/createPoll',
              ncyBreadcrumb: {
                 label: 'Create a poll'
+             }
+          });
+          $stateProvider.state('createQuestion', {
+             templateUrl: 'partials/home/create-question.html',
+             url: '/createQuestion',
+             ncyBreadcrumb: {
+                label: 'Create a question'
              }
           });
        });

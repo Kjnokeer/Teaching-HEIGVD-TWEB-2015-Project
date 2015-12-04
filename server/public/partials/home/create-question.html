@@ -1,0 +1,42 @@
+<div ng-controller="PollsCtrl">
+  <div class='wrapper' >
+    <div class='row'>
+      <div class='col-lg-12'>
+        <form ng-submit="submitPoll()">
+          <fieldset class='text-center'>
+            <legend>Create poll's questions</legend>
+            <div class='form-group'>
+              <input type="text" ng-model="title" name="title" class="form-control" id="name" placeholder="Title" required>
+            </div>
+            <div class='form-group'>
+              <input type="text" ng-model="title" name="title" class="form-control" id="name" placeholder="Choice 1" required>
+            </div>
+            <div class='form-group'>
+              <input type="text" ng-model="title" name="title" class="form-control" id="name" placeholder="Choice 2" required>
+            </div>
+            <span id="choices">
+            </span>
+            <button type="button" onclick="addChoice();">Add another choice</button>
+
+            <div class='text-center row'>
+              <div class="col-lg-6"><button type="button" class="btn btn-primary btn-block col-lg-6" ui-sref="polls">Finish</button></div>
+              <div class="col-lg-6"><button type="submit" class="btn btn-primary btn-block">Create</button></div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var i = 3;
+function addChoice() {
+   if(i > 10) {
+      alert('Too many choices !');
+   }
+   else {
+      $('#choices').append('<div class="form-group"><input type="text" ng-model="title" name="title" class="form-control" id="name" placeholder="Choice ' + i++ + '" required></div>');
+   }
+}
+</script>
