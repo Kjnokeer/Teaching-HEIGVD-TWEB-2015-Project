@@ -101,6 +101,7 @@ router.delete('/api/polls/:id/questions', function(req, res, next) {
 
 // Ajoute une question dans le poll (:id)
 router.post('/api/polls/:id/questions', function(req, res, next) {
+
    var newQuestion = new Question({
       title: req.body.title,
       type: req.body.type,

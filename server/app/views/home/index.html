@@ -139,28 +139,55 @@
             $http.post('/user/polls/', {
               title: $scope.title,
               state: $scope.state
+            }).then(function(response) {  
+              $state.go('createQuestion', {pollId: response.data._id});
             });
 
-            $state.go('createQuestion');
+            
           }
 
+          $scope.submitQuestion = function(pollId) {
+
+            $http.post('/api/polls/' + pollId + '/questions', {
+              title: $scope.title,
+              type: 'choice'
+            }).then(function(response) {
+              var i = 1;
+              while(true) {
+                if(!$scope['choice' + i])
+                  break;
+
+                $http.post('/api/polls//questions/' + response.data._id + '/choices', {
+                  key: 'key',
+                  text: $scope['choice' + i]
+                });
+
+                i++;
+              }
+              if($scope.finish === true)
+                $state.go('polls');
+              else
+                $state.go($state.current, {pollId: pollId}, {reload: true});
+            });
+          }
        })
 	   .controller('ManageCtrl', function($scope, $http, $state) {
           $scope.loadUserInfo = function() {
             $http.get("/user/account").then(function(response) {
-              $scope.polls = response.data;
+              $scope.user = response.data;
             });
-          }
-          }
-		  $scope.submitUserInfo = function() {
-            $http.post('/user/account/', {
-              title: $scope.title,
-              state: $scope.state
-            });
+          };
 
-            $state.go('polls');
-          }
+          $scope.submitUserInfos = function() {
 
+              $http.put('/user/account/', {
+                firstname: $scope.user.firstname,
+                lastname: $scope.user.lastname,
+                password: $scope.password
+              });
+
+              alert('Success');
+          };
        })
        .config(function($stateProvider) {
           $stateProvider.state('home', {
@@ -189,6 +216,9 @@
              url: '/manage',
              ncyBreadcrumb: {
                 label: 'Manage your account'
+             },
+             params: {
+                message: 'None'
              }
           });
           $stateProvider.state('createPoll', {
@@ -200,9 +230,12 @@
           });
           $stateProvider.state('createQuestion', {
              templateUrl: 'partials/home/create-question.html',
-             url: '/createQuestion',
+             url: '/createQuestion?pollId',
              ncyBreadcrumb: {
                 label: 'Create a question'
+             },
+             controller: function($scope, $stateParams, $state) {
+                $scope.pollId = $stateParams.pollId;
              }
           });
        });
