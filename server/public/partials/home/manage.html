@@ -1,6 +1,6 @@
-<div width="400px" ng-controller="ManagerCtrl">
+<div ng-controller="ManageCtrl">
    <h1>User informations</h1>
-   <form class="form-horizontal" role="form">
+   <form class="form-horizontal" ng-submit="submitUserInfo()">
       <div class="form-group">
          <label class="control-label col-sm-2" for="current-password">Current password :</label>
          <div class="col-sm-10">

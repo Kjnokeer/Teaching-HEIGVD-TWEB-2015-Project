@@ -145,6 +145,23 @@
           }
 
        })
+	   .controller('ManageCtrl', function($scope, $http, $state) {
+          $scope.loadUserInfo = function() {
+            $http.get("/user/account").then(function(response) {
+              $scope.polls = response.data;
+            });
+          }
+          }
+		  $scope.submitUserInfo = function() {
+            $http.post('/user/account/', {
+              title: $scope.title,
+              state: $scope.state
+            });
+
+            $state.go('polls');
+          }
+
+       })
        .config(function($stateProvider) {
           $stateProvider.state('home', {
              templateUrl: 'partials/home/home.html',
