@@ -18,10 +18,10 @@ router.get('/api/user', function(req, res, next) {
 });
 
 router.post('/user/polls', function(req, res, next) {
+
    var newPoll = new Poll({
       title: req.body.title,
       state: req.body.state,
-      access: req.body.access,
       users: req.session.userId
    });
    newPoll.save(function(err) {
@@ -40,4 +40,25 @@ router.get('/user/polls', function(req, res, next) {
 
       res.send(polls);
     });
+});
+
+// Affiche les détails d'un account et permet de le modifier
+router.get('/user/account/:id', function(req, res, next) {
+   User.findById(req.params.id, function(err, user) {
+      if (err) return next(err);
+
+      res.send(user);
+   });
+});
+
+router.post('/user/account', function(req, res, next) {
+   var newPoll = new Poll({
+      title: req.body.title,
+      state: req.body.state,
+      users: req.session.userId
+   });
+   newPoll.save(function(err) {
+      if (err) 
+        return next(err);
+   });
 });

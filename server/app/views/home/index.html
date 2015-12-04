@@ -48,15 +48,15 @@
         <ul id='dock'>
           <li class='active launcher' ui-sref-active="active" style="margin-top: 35px;">
             <i class='icon-dashboard'></i>
-            <a ui-sref="questionnaires">Questionnaires</a>
+            <a ui-sref="polls">Polls</a>
           </li>
           <li class='launcher' ui-sref-active="active" style="margin-top: 35px;">
             <i class='icon-file-text-alt'></i>
-            <a ui-sref="statistiques">Statistiques</a>
+            <a ui-sref="statistics">Statistics</a>
           </li>
           <li class='launcher' ui-sref-active="active" style="margin-top: 35px;">
             <i class='icon-table'></i>
-            <a ui-sref="gestion">Gestion du compte</a>
+            <a ui-sref="manage">Manage account</a>
           </li>
         </ul>
         <div data-toggle='tooltip' id='beaker' title='Made by lab2023'></div>
@@ -116,8 +116,51 @@
        .factory('socket', function(socketFactory) {
           return socketFactory();
        })
-       .controller('PollsCtrl', function($scope, $http) {
-          $http.get("/user/polls").then(function(response) {$scope.polls = response.data;});
+       .controller('PollsCtrl', function($scope, $http, $state) {
+
+          $scope.loadPolls = function() {
+            $http.get("/user/polls").then(function(response) {
+              $scope.polls = response.data;
+            });
+          }
+
+          $scope.deletePoll = function (id) {
+            $http.delete('/api/polls/' + id)
+              .success(function (data) {
+                 $scope.error = "error " + data;
+              });
+
+            $http.get("/user/polls").then(function(response) {
+              $scope.polls = response.data;
+            });
+          }
+
+          $scope.submitPoll = function() {
+            $http.post('/user/polls/', {
+              title: $scope.title,
+              state: $scope.state
+            });
+
+            $state.go('createQuestion');
+          }
+
+       })
+	   .controller('ManageCtrl', function($scope, $http, $state) {
+          $scope.loadUserInfo = function() {
+            $http.get("/user/account").then(function(response) {
+              $scope.polls = response.data;
+            });
+          }
+          }
+		  $scope.submitUserInfo = function() {
+            $http.post('/user/account/', {
+              title: $scope.title,
+              state: $scope.state
+            });
+
+            $state.go('polls');
+          }
+
        })
        .config(function($stateProvider) {
           $stateProvider.state('home', {
@@ -127,25 +170,39 @@
                 label: 'Home'
              }
           });
-          $stateProvider.state('questionnaires', {
-             templateUrl: 'partials/home/questionnaires.html',
-             url: '/questionnaires',
+          $stateProvider.state('polls', {
+             templateUrl: 'partials/home/polls.html',
+             url: '/polls',
              ncyBreadcrumb: {
-                label: 'Questionnaires'
+                label: 'Polls'
              }
           });
-          $stateProvider.state('statistiques', {
-             templateUrl: 'partials/home/statistiques.html',
-             url: '/statistiques',
+          $stateProvider.state('statistics', {
+             templateUrl: 'partials/home/statistics.html',
+             url: '/statistics',
              ncyBreadcrumb: {
-                label: 'Statistiques'
+                label: 'Statistics'
              }
           });
-          $stateProvider.state('gestion', {
-             templateUrl: 'partials/home/gestion.html',
-             url: '/gestion',
+          $stateProvider.state('manage', {
+             templateUrl: 'partials/home/manage.html',
+             url: '/manage',
              ncyBreadcrumb: {
-                label: 'Gestion du compte'
+                label: 'Manage your account'
+             }
+          });
+          $stateProvider.state('createPoll', {
+             templateUrl: 'partials/home/create-poll.html',
+             url: '/createPoll',
+             ncyBreadcrumb: {
+                label: 'Create a poll'
+             }
+          });
+          $stateProvider.state('createQuestion', {
+             templateUrl: 'partials/home/create-question.html',
+             url: '/createQuestion',
+             ncyBreadcrumb: {
+                label: 'Create a question'
              }
           });
        });
