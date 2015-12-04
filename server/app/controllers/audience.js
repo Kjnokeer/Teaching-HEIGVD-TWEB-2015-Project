@@ -7,13 +7,18 @@ module.exports = function(app) {
 };
 
 /** Attrape toutes les routes **/
-router.post('/audience', function(req, res, next) {
+router.get('/audience/poll', function(req, res, next) {
 
-	req.session = req.body.pseudo;
+	//req.session = req.body.pseudo;
 
-	console.log(req.body.pseudo);
+	//console.log(req.body.pseudo);
 
-	// Va chercher dans les partials
-	res.render('audience/question');
+	console.log(req.body.pollnr);
+
+
+	// Peut importe ce qu'il répond
+	//res.render('audience/question');
+
+	res.send("voiture: opel");
 
 });

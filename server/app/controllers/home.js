@@ -16,11 +16,13 @@ router.use('/', function(req, res, next) {
       else
          next();
    else if(req.path === '/audience'){
-     if(req.query.polls !== undefined){
+
+    res.render('audience/index', {params: req.query});
+     /*if(req.query.polls !== undefined){
         res.render('audience/index', {params: req.query});
      } else {
         res.render('audience/error');
-     }
+     }*/
    } else
       res.render('login/index');
 });
