@@ -142,8 +142,10 @@
             }).then(function(response) {  
               $state.go('createQuestion', {pollId: response.data._id});
             });
+          }
 
-            
+          $scope.finish = function() {
+            $state.go('polls');
           }
 
           $scope.submitQuestion = function(pollId) {
