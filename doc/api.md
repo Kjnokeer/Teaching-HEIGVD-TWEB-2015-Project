@@ -18,7 +18,8 @@
 [Add a choices in a question](#addChoice)<br>
 [Edit a choice](#editChoice)<br>
 [Get a choice](#getChoice)<br>
-[Delete a choice](#deleteChoice)<br>
+[Delete a choice](#deleteChoice)<br><br>
+[Add response to a question](#addResponse)<br>
 
 
 # <a name="getPolls"></a> **Get Polls**
@@ -937,6 +938,59 @@
     $.ajax({
       url: "/polls/*/questions/*/choices/56363e3ea9c49ee4030c5a32",
       type : "DELETE",
+      success : function(result) {
+        console.log(result);
+      }
+    });
+  ```
+  
+----
+
+# <a name="addResponse"></a> **Add a  response to a question**
+
+  Add a question to a response.
+
+* **URL**
+
+  /polls/{idPoll}/questions/*/answers
+
+* **Method:**
+
+  `POST`
+  
+*  **URL Params**
+
+   **Required:**
+   
+   `idPoll`
+
+* **Data Params**
+
+   `{
+        pseudo: 'Toto',
+        choiceId: '566412413337a77c1106775e'
+    }`
+
+* **Success Response:**
+
+  * **Code:** 200
+  * **Content:** `{
+     "choices": "566412413337a77c1106775e",
+     "participations": "5664818894d905281dfdfd42",
+     "_id": "566494b34abbced81a090277"
+   }`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND 
+
+
+* **Sample Call:**
+
+  ```javascript
+    $.ajax({
+      url: "/polls/566411dc3337a77c1106775b/questions/*/answers",
+      type : "POST",
       success : function(result) {
         console.log(result);
       }
