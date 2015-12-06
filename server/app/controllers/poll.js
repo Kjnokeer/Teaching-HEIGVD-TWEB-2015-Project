@@ -3,6 +3,8 @@ var express = require('express'),
    mongoose = require('mongoose'),
    Poll = mongoose.model('Poll'),
    Question = mongoose.model('Question'),
+   Participation = mongoose.model('Participation'),
+   Answer = mongoose.model('Answer'),
    Choice = mongoose.model('Choice');
 
 module.exports = function(app) {
@@ -20,7 +22,6 @@ router.get('/api/polls', function(req, res, next) {
 
 // Ajoute un nouveau poll
 router.post('/api/polls', function(req, res, next) {
-
    var newPoll = new Poll({
       title: req.body.title,
       state: req.body.state,
@@ -39,7 +40,9 @@ router.delete('/api/polls', function(req, res, next) {
       .exec(function(err) {
          if (err) return next(err);
 
-         res.send({ message: 'DELETE success'});
+         res.send({
+            message: 'DELETE success'
+         });
       });
 });
 
@@ -50,7 +53,9 @@ router.delete('/api/polls/:id', function(req, res, next) {
    }, function(err) {
       if (err) return next(err);
 
-      res.send({ message: 'DELETE success'});
+      res.send({
+         message: 'DELETE success'
+      });
    });
 });
 
@@ -95,7 +100,9 @@ router.delete('/api/polls/:id/questions', function(req, res, next) {
       .exec(function(err) {
          if (err) return next(err);
 
-         res.send({ message: 'DELETE success'});
+         res.send({
+            message: 'DELETE success'
+         });
       });
 });
 
@@ -130,7 +137,9 @@ router.delete('/api/polls/*/questions/:id', function(req, res, next) {
       .exec(function(err) {
          if (err) return next(err);
 
-         res.send({ message: 'DELETE success'});
+         res.send({
+            message: 'DELETE success'
+         });
       });
 });
 
@@ -166,7 +175,9 @@ router.delete('/api/polls/*/questions/:id/choices', function(req, res, next) {
       .exec(function(err) {
          if (err) return next(err);
 
-         res.send({ message: 'DELETE success'});
+         res.send({
+            message: 'DELETE success'
+         });
       });
 });
 
@@ -200,7 +211,9 @@ router.delete('/api/polls/*/questions/*/choices/:id', function(req, res, next) {
       .exec(function(err) {
          if (err) return next(err);
 
-         res.send({ message: 'DELETE success' });
+         res.send({
+            message: 'DELETE success'
+         });
       });
 });
 
@@ -215,3 +228,36 @@ router.put('/api/polls/*/questions/*/choices/:id', function(req, res, next) {
       res.send(model);
    });
 });
+
+
+router.get('/api/polls/:id/participations', function(req, res, next) {
+   Participation.find()
+      .where('polls').equals(req.params.id)
+      .exec(function(err, participations) {
+         if (err) return next(err);
+
+         res.send(participations);
+      });
+});
+
+
+router.get('/api/polls/*/participations/:id/answers', function(req, res, next) {
+   Answer.find()
+      .where('participations').equals(req.params.id)
+      .exec(function(err, answers) {
+         if (err) return next(err);
+
+         res.send(answers);
+      });
+});
+
+
+router.get('/api/choices/:id/answers', function(req, res, next) {
+   Answer.find()
+      .where('choices').equals(req.params.id)
+      .exec(function(err, answers) {
+         if (err) return next(err);
+
+         res.send(answers);
+      });
+})

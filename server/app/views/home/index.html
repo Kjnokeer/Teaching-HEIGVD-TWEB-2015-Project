@@ -118,6 +118,9 @@
        })
        .controller('PollsCtrl', function($scope, $http, $state) {
 
+          $scope.labels = [];
+          $scope.data = [];
+
           $scope.loadPolls = function() {
             $http.get("/user/polls").then(function(response) {
               $scope.polls = response.data;
@@ -172,6 +175,64 @@
                 $state.go($state.current, {pollId: pollId}, {reload: true});
             });
           }
+
+          $scope.showStatistics = function(pollId) {
+            $state.go('statisticsPoll', {pollId: pollId, questionId: 0});
+          }
+
+          $scope.loadStatistics = function(pollId, questionId) {
+            $http.get('/api/polls/' + pollId).then(function(response) {
+              $scope.title = response.data.title;
+            });
+            $http.get('/api/polls/' + pollId + '/questions').then(function(response) {
+
+              $scope.question = response.data[questionId];
+              $scope.nbQuestions = response.data.length;
+
+              $http.get('/api/polls/*/questions/' + response.data[questionId]._id + '/choices').then(function(response) {
+
+                  $scope.labels = [];
+                  $scope.data = [];
+
+                  var choices = response.data;
+
+                  for(var i in choices) {
+                    $scope.labels.push(choices[i].text);
+                    
+                    $http.get('/api/choices/' + choices[i]._id + '/answers').then(function(response) {
+                      $scope.data.push(response.data.length);
+                    });
+
+                  }
+              });
+            });
+          }
+
+          $scope.nextQuestion = function(pollId) {
+            $scope.questionId++;
+            $state.go('statisticsPoll', {pollId: pollId, questionId: $scope.questionId});
+          }
+
+          $scope.previousQuestion = function(pollId) {
+            $scope.questionId--;
+            $state.go('statisticsPoll', {pollId: pollId, questionId: $scope.questionId});
+          }
+
+          $scope.checkPreviousQuestion = function() {
+            if ($scope.questionId == 0) { 
+              return true;
+            } else {
+              return false;
+            }
+          };
+
+          $scope.checkNextQuestion = function() {
+            if ($scope.questionId == $scope.nbQuestions - 1) { 
+              return true;
+            } else {
+              return false;
+            }
+          };
        })
 	   .controller('ManageCtrl', function($scope, $http, $state) {
           $scope.loadUserInfo = function() {
@@ -211,6 +272,17 @@
              url: '/statistics',
              ncyBreadcrumb: {
                 label: 'Statistics'
+             }
+          });
+          $stateProvider.state('statisticsPoll', {
+             templateUrl: 'partials/home/statistics-poll.html',
+             url: '/statisticsPoll?pollId&questionId',
+             ncyBreadcrumb: {
+                label: 'Statistics of a poll'
+             },
+             controller: function($scope, $stateParams, $state) {
+                $scope.pollId = $stateParams.pollId;
+                $scope.questionId = $stateParams.questionId;
              }
           });
           $stateProvider.state('manage', {
