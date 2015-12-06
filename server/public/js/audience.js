@@ -66,6 +66,7 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
 .controller('questionsController', function($stateParams, $http, $scope, $state) {
 
   $scope.indexQuestion = -1;
+  $scope.currentQuestion = "";
 
   // Retreive questions
   $http.get('/api/polls/' + $stateParams.idPoll + '/questions').then(function success(response) {
@@ -89,7 +90,10 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
     }
 
     $http.get('/api/polls/' + $stateParams.idPoll + '/questions/' + $scope.poll.questions[$scope.indexQuestion]._id + '/choices').then(function success(response) {
+      
+      $scope.currentQuestion = $scope.poll.questions[$scope.indexQuestion];
       $scope.poll.questions[$scope.indexQuestion].choices = response.data;
+
     }, function(error) {
       $scope.errorMsg = "Error !";
       console.log("error");
