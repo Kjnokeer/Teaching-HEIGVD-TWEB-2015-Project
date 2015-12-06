@@ -69,3 +69,4 @@ Concerant le dashboard :
 - Il est possible de créer des sondages sont réponses (seul le titre est requis).
 - Si le status du sondage n'est pas fourni lors de la création (`Active` ou `Closed`), il ne sera pas affiché dans la liste des sondages.
 - Si on affiche les statistiques d'un sondage ne contenant pas de réponses, aucun message d'information n'est affiché à l'utilisateur pour le prévenir. 
+- Le status du sondage n'a aucune influence. Il est toujours possible d'y répondre même en étant dans l'état `Closed`.
