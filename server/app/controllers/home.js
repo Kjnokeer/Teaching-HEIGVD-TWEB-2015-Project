@@ -8,22 +8,14 @@ module.exports = function(app) {
 
 /** Attrape toutes les routes **/
 router.use('/', function(req, res, next) {
-   if(req.path === '/login' || req.path === '/signUp' || req.path.substring(0, 4) === "/api")
+   if(req.path === '/login' || req.path === '/signUp' || req.path.substring(0, 4) === "/api" || req.path.substring(0, 9) === '/audience')
       next();
    else if(req.session.email)
       if(req.path === '/')
          res.render('home/index', {email: req.session.email});
       else
          next();
-   else if(req.path === '/audience'){
-
-    res.render('audience/index', {params: req.query});
-     /*if(req.query.polls !== undefined){
-        res.render('audience/index', {params: req.query});
-     } else {
-        res.render('audience/error');
-     }*/
-   } else
+   else
       res.render('login/index');
 });
 
