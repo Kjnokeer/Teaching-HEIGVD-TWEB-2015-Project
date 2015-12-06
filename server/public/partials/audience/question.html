@@ -1,13 +1,15 @@
 <div class='col-lg-12 text-center'>
-  <div class='row'>
-    <h2>{{ currentQuestion.title }}</h2>
-  </div>
-  <div class='row'>
-    <p ng-repeat="choice in currentQuestion.choices">
-      <input type="radio" name="question.choice" value="{{ choice._id }}"> {{ choice.text }}
-    </p>
-  </div>
-  <div class='row'>
-    <button class="btn btn-primary" ng-click="nextQuestion()">Question suivante <i class="fa fa-arrow-right"></i></button>
-  </div>
+  <form ng-submit="nextQuestion()">
+    <div class='row'>
+      <h2>{{ currentQuestion.title }}</h2>
+    </div>
+    <div class='row'>
+      <p ng-repeat="choice in currentQuestion.choices">
+        <input type="radio" ng-model="currentQuestion.choice" value="{{ choice._id }}"> {{ choice.text }}
+      </p>
+    </div>
+    <div class='row'>
+      <button type="submit" class="btn btn-primary">Question suivante <i class="fa fa-arrow-right"></i></button>
+    </div>
+  </form>
 </div>

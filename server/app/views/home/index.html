@@ -142,7 +142,7 @@
             $http.post('/user/polls/', {
               title: $scope.title,
               state: $scope.state
-            }).then(function(response) {  
+            }).then(function(response) {
               $state.go('createQuestion', {pollId: response.data._id});
             });
           }
@@ -198,7 +198,7 @@
 
                   for(var i in choices) {
                     $scope.labels.push(choices[i].text);
-                    
+
                     $http.get('/api/choices/' + choices[i]._id + '/answers').then(function(response) {
                       $scope.data.push(response.data.length);
                     });
@@ -219,7 +219,7 @@
           }
 
           $scope.checkPreviousQuestion = function() {
-            if ($scope.questionId == 0) { 
+            if ($scope.questionId == 0) {
               return true;
             } else {
               return false;
@@ -227,7 +227,7 @@
           };
 
           $scope.checkNextQuestion = function() {
-            if ($scope.questionId == $scope.nbQuestions - 1) { 
+            if ($scope.questionId == $scope.nbQuestions - 1) {
               return true;
             } else {
               return false;

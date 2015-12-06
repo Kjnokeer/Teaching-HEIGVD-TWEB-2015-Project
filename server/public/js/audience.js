@@ -106,6 +106,21 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
   });
 
   $scope.nextQuestion = function(){
+
+    if($scope.indexQuestion >= 0) {
+      console.log($stateParams.idPoll);
+      console.log($scope.indexQuestion);
+      console.log($scope.poll.questions);
+      $http.post('/api/polls/' + $stateParams.idPoll + '/questions/' + $scope.poll.questions[$scope.indexQuestion]._id + '/answers', {
+        pseudo: $scope.poll.pseudo,
+        choiceId: $scope.currentQuestion.choice
+      }).then(function success(response) {
+        console.log(response);
+      }, function error(response) {
+        console.log("error");
+      })
+    }
+
     $scope.indexQuestion++;
 
     if($scope.indexQuestion == $scope.poll.questions.length){
@@ -114,7 +129,7 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
     }
 
     $http.get('/api/polls/' + $stateParams.idPoll + '/questions/' + $scope.poll.questions[$scope.indexQuestion]._id + '/choices').then(function success(response) {
-      
+
       $scope.currentQuestion = $scope.poll.questions[$scope.indexQuestion];
       $scope.poll.questions[$scope.indexQuestion].choices = response.data;
 
