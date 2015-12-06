@@ -14,6 +14,12 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
     },
     controller: 'questionsController'
   });
+
+  $stateProvider.state('end', {
+    templateUrl: 'partials/audience/end.html',
+    url: '/end'
+  });
+
 })
 .factory('mySocket',	function	(socketFactory)	{
   return	socketFactory();
@@ -23,7 +29,7 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
   // permet de setter le titre de la page
   $scope.title = "audience";
 
-  // permet de gerer l'affichage du camanbert
+  // permet de gerer l'affichage du camembert
   $scope.labels = ["Yes", "No", "I don't know"];
   $scope.data = [0, 0, 0];
   // cam
@@ -36,9 +42,13 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
 
   $scope.poll = {
     number: '',
-    pseudo: ''
+    pseudo: '',
+    questions: []
   };
 
+  $scope.errorMsg = "";
+
+  // Retreive poll informations
   $scope.audience = function() {
 
     $http.get('/api/polls/' + $scope.poll.number).then(function success(response) {
@@ -47,26 +57,43 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
         titlePoll: response.data.title
       });
     }, function error(response){
+      $scope.errorMsg = "Error, this poll doesn't exist !";
       console.log("error");
     });
 
-
-
-
   }
 })
-.controller('questionsController', function($stateParams, $http, $scope) {
-  $http.get('/api/polls/' + $stateParams.idPoll + '/questions').then(function success(response) {
-    $scope.poll.question = response.data[0];
+.controller('questionsController', function($stateParams, $http, $scope, $state) {
 
-    $http.get('/api/polls/' + $stateParams.idPoll + '/questions/' + $scope.poll.question._id + '/choices').then(function success(response) {
-      $scope.poll.question.choices = response.data;
-    }, function(error) {
-      console.log("error");
-    })
+  $scope.indexQuestion = -1;
+
+  // Retreive questions
+  $http.get('/api/polls/' + $stateParams.idPoll + '/questions').then(function success(response) {
+    $scope.poll.questions = response.data;
+
+    console.log($scope.poll.questions);
+
+    $scope.nextQuestion();
 
   }, function error(response){
+    $scope.errorMsg = "Error !";
     console.log("error");
   });
+
+  $scope.nextQuestion = function(){
+    $scope.indexQuestion++;
+
+    if($scope.indexQuestion == $scope.poll.questions.length){
+      $state.go('end');
+      return;
+    }
+
+    $http.get('/api/polls/' + $stateParams.idPoll + '/questions/' + $scope.poll.questions[$scope.indexQuestion]._id + '/choices').then(function success(response) {
+      $scope.poll.questions[$scope.indexQuestion].choices = response.data;
+    }, function(error) {
+      $scope.errorMsg = "Error !";
+      console.log("error");
+    });
+  }
 
 });
