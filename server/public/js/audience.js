@@ -15,6 +15,28 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
     controller: 'questionsController'
   });
 
+  // Not used yet...
+  $stateProvider.state('questionOpen', {
+    templateUrl: 'partials/audience/questionOpen.html',
+    url: '/question',
+    params: {
+      idPoll: 'idPoll',
+      titlePoll: 'titlePoll'
+    },
+    controller: 'questionsController'
+  });
+
+  // Not used yet...
+  $stateProvider.state('questionMultiple', {
+    templateUrl: 'partials/audience/questionMultiple.html',
+    url: '/question',
+    params: {
+      idPoll: 'idPoll',
+      titlePoll: 'titlePoll'
+    },
+    controller: 'questionsController'
+  });
+
   $stateProvider.state('end', {
     templateUrl: 'partials/audience/end.html',
     url: '/end'
@@ -39,6 +61,8 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
   });
 })
 .controller('audienceController', function($scope, $http, $state) {
+
+  $state.go("audience");
 
   $scope.poll = {
     number: '',
