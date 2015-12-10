@@ -2,12 +2,22 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
 .config(function($stateProvider) {
   $stateProvider.state('audience', {
     templateUrl: 'partials/audience/audience.html',
-    url: '/audience'
+    url: '/audience',
+    controller: 'audienceController'
+  });
+
+  $stateProvider.state('audience2', {
+    templateUrl: 'partials/audience/audience.html',
+    url: '/audience/:pollNr',
+    params: {
+      pollNr: 'pollNr'
+    },
+    controller: 'audienceController'
   });
 
   $stateProvider.state('question', {
     templateUrl: 'partials/audience/question.html',
-    url: '/question',
+    url: '/question/:idPoll',
     params: {
       idPoll: 'idPoll',
       titlePoll: 'titlePoll'
@@ -51,18 +61,17 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
   // permet de setter le titre de la page
   $scope.title = "audience";
 
-  // permet de gerer l'affichage du camembert
-  $scope.labels = ["Yes", "No", "I don't know"];
-  $scope.data = [0, 0, 0];
-  // cam
-
   mySocket.on('userNumber', function(data) {
     console.log(data);
   });
 })
-.controller('audienceController', function($scope, $http, $state) {
+.controller('audienceController', function($scope, $http, $state, $stateParams) {
+  
+  //  $scope.pollNr = "";
+  
+  $scope.pollNr = $stateParams.pollNr;
 
-  $state.go("audience");
+  //$state.go("audience");
 
   $scope.poll = {
     number: '',
@@ -76,6 +85,7 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
   $scope.audience = function() {
 
     $http.get('/api/polls/' + $scope.poll.number).then(function success(response) {
+
       $state.go("question", {
         idPoll: response.data._id,
         titlePoll: response.data.title
@@ -91,6 +101,8 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
 
   $scope.indexQuestion = -1;
   $scope.currentQuestion = "";
+
+  $scope.buttonContent = "Next question";
 
   // Retreive questions
   $http.get('/api/polls/' + $stateParams.idPoll + '/questions').then(function success(response) {
@@ -121,6 +133,7 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
       })
     }
 
+
     $scope.indexQuestion++;
 
     if($scope.indexQuestion == $scope.poll.questions.length){
@@ -129,6 +142,10 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
     }
 
     $http.get('/api/polls/' + $stateParams.idPoll + '/questions/' + $scope.poll.questions[$scope.indexQuestion]._id + '/choices').then(function success(response) {
+
+      if($scope.indexQuestion == $scope.poll.questions.length - 1){
+        $scope.buttonContent = "Finish";
+      }
 
       $scope.currentQuestion = $scope.poll.questions[$scope.indexQuestion];
       $scope.poll.questions[$scope.indexQuestion].choices = response.data;
