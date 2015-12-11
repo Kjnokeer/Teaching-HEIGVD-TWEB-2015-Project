@@ -11,8 +11,7 @@
     <link href="assets/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/images/logo_t.png" rel="icon" type="image/ico" />
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-
+    
   </head>
   <body class='login' ng-app="LoginApp">
     <div class='wrapper' ui-view>
@@ -29,9 +28,9 @@
         </div>
       </div>
       <div class='row'>
-        <div class='col-lg-6 col-lg-offset-3 text-center'>
+        <div class='col-lg-12'>
           <form method="POST" action="/login">
-            <fieldset>
+            <fieldset class='text-center'>
               <legend>Login to your account</legend>
               <div class='form-group'>
                 <input class='form-control' name="email" placeholder='Email address' type='text'>
