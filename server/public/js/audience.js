@@ -71,10 +71,10 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
   
   $scope.pollNr = $stateParams.pollNr;
 
-  //$state.go("audience");
+  //$state.go("audience2", $scope.pollNr);
 
   $scope.poll = {
-    number: '',
+    number: $stateParams.pollNr,
     pseudo: '',
     questions: []
   };
