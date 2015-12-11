@@ -69,23 +69,6 @@
           <li></li>
           <li style="display:inline;" ncy-breadcrumb></li>
         </ul>
-        <div id='toolbar'>
-          <div class='btn-group'>
-            <a class='btn' data-toggle='toolbar-tooltip' href='#' title='Building'>
-              <i class='icon-building'></i>
-            </a>
-            <a class='btn' data-toggle='toolbar-tooltip' href='#' title='Laptop'>
-              <i class='icon-laptop'></i>
-            </a>
-            <a class='btn' data-toggle='toolbar-tooltip' href='#' title='Calendar'>
-              <i class='icon-calendar'></i>
-              <span class='badge'>3</span>
-            </a>
-            <a class='btn' data-toggle='toolbar-tooltip' href='#' title='Lemon'>
-              <i class='icon-lemon'></i>
-            </a>
-          </div>
-        </div>
       </section>
 
       <!-- Content -->
@@ -116,7 +99,7 @@
        .factory('socket', function(socketFactory) {
           return socketFactory();
        })
-       .controller('PollsCtrl', function($scope, $http, $state) {
+       .controller('PollsCtrl', function($scope, $http, $state, $q) {
 
           $scope.labels = [];
           $scope.data = [];
@@ -181,6 +164,9 @@
           }
 
           $scope.loadStatistics = function(pollId, questionId) {
+            $scope.labels = [];
+            $scope.data = [];
+
             $http.get('/api/polls/' + pollId).then(function(response) {
               $scope.title = response.data.title;
             });
@@ -191,19 +177,25 @@
 
               $http.get('/api/polls/*/questions/' + response.data[questionId]._id + '/choices').then(function(response) {
 
-                  $scope.labels = [];
-                  $scope.data = [];
+                var choices = response.data;
 
-                  var choices = response.data;
+                angular.forEach(choices, function(choice) {
+                  $scope.labels.push(choice.text);
 
-                  for(var i in choices) {
-                    $scope.labels.push(choices[i].text);
+                  $http.get('/api/choices/' + choice._id + '/answers').then(function(response) {
+                    $scope.data.push(response.data.length);
+                  });
 
-                    $http.get('/api/choices/' + choices[i]._id + '/answers').then(function(response) {
-                      $scope.data.push(response.data.length);
-                    });
-
-                  }
+                  /*
+                  $http({
+                    method: 'GET',
+                    url: '/api/choices/' + choice._id + '/answers',
+                    async: false
+                  }).then(function successCallback(response) {
+                    $scope.data.push(response.data.length);
+                    }, function errorCallback(response) {
+                    });*/
+                  });
               });
             });
           }
