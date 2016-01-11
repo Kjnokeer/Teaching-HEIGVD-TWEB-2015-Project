@@ -11,7 +11,7 @@ module.exports = function(app) {
   app.use('/', router);
 };
 
-// Affiche les polls
+// Retourne tous les polls
 router.get('/api/polls', function(req, res, next) {
   Poll.find(function(err, polls) {
     if (err) return next(err);
@@ -71,7 +71,7 @@ router.put('/api/polls/:id', function(req, res, next) {
   });
 });
 
-// Affiche les détails d'un poll et permet de le modifier
+// Retourne les détails d'un poll
 router.get('/api/polls/:id', function(req, res, next) {
   Poll.findById(req.params.id, function(err, poll) {
     if (err) return next(err);

@@ -22,6 +22,9 @@
                      <td>{{poll.creationDate}}</td>
                      <td>{{poll.access}}
                         <td class='action'>
+                           <a class='btn btn-info' ng-click='showPollDetails(poll._id)'>
+                             Details
+                           </a>
                            <a class='btn btn-info' ng-click='editPoll(poll._id)'>
                               <i class='icon-edit'></i>
                            </a>
@@ -42,29 +45,29 @@
 </div>
 
 <script>
-      function changeState(elem) {
-         var id = $(elem).attr('idPoll');
-         var state = $(elem).attr('statePoll');
-         var title = $(elem).attr('titlePoll');
-         var newState = (state == "active" ? "closed" : "active");
-         var kid = $(elem).children();
-         $.ajax({
-            type: "PUT",
-            url: "/api/polls/" + id,
-            data: {
-               title: title,
-               state: newState
-            }
-         });
-         kid.html(newState);
-         if (newState == "active") {
-            $(elem).attr('statePoll', newState);
-            $(elem).removeClass("btn-danger");
-            $(elem).addClass("btn-success");
-         } else {
-            $(elem).attr('statePoll', newState);
-            $(elem).removeClass("btn-success");
-            $(elem).addClass("btn-danger");
+   function changeState(elem) {
+      var id = $(elem).attr('idPoll');
+      var state = $(elem).attr('statePoll');
+      var title = $(elem).attr('titlePoll');
+      var newState = (state == "active" ? "closed" : "active");
+      var kid = $(elem).children();
+      $.ajax({
+         type: "PUT",
+         url: "/api/polls/" + id,
+         data: {
+            title: title,
+            state: newState
          }
+      });
+      kid.html(newState);
+      if (newState == "active") {
+         $(elem).attr('statePoll', newState);
+         $(elem).removeClass("btn-danger");
+         $(elem).addClass("btn-success");
+      } else {
+         $(elem).attr('statePoll', newState);
+         $(elem).removeClass("btn-success");
+         $(elem).addClass("btn-danger");
       }
-   </script>
+   }
+</script>

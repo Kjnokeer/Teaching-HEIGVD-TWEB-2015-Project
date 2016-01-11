@@ -21,6 +21,7 @@ var UserSchema = new Schema({
 });
 
 mongoose.model('User', UserSchema);
+
 /*
 var User = mongoose.model('User', UserSchema);
 
