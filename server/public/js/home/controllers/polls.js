@@ -171,15 +171,16 @@ app.controller('PollsCtrl', function($scope, $http, $state, $q) {
       angular.forEach($scope.removedQuestionId, function(value, key) {
          $http.delete('/api/polls/*/questions/' + value);
       });
+      // On supprime les choix
       angular.forEach($scope.removedChoiceId, function(value, key) {
-         $http.delete('/api/polls/*/questions/*/choices' + value);
+         $http.delete('/api/polls/*/questions/*/choices/' + value);
       });
 
       $state.go('polls');
    }
 
    $scope.removeFormChoice = function(questionIndex, choiceIndex) {
-      $scope.removedQuestionId.push($scope.table.fields[questionIndex].choices[choiceIndex].id);
+      $scope.removedChoiceId.push($scope.table.fields[questionIndex].choices[choiceIndex].id);
       $scope.table.fields[questionIndex].choices.splice(choiceIndex, 1);
    }
 
