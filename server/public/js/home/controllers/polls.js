@@ -3,6 +3,12 @@ app.controller('PollsCtrl', function($scope, $http, $state, $q) {
    $scope.labels = [];
    $scope.data = [];
 
+   $scope.table = {
+      fields: []
+   };
+   $scope.removedQuestionId = [];
+   $scope.removedChoiceId = [];
+
    $scope.loadPolls = function() {
       $http.get("/user/polls").then(function(response) {
          $scope.polls = response.data;
@@ -24,54 +30,157 @@ app.controller('PollsCtrl', function($scope, $http, $state, $q) {
       }
    }
 
-   $scope.showPollDetails = function(id) {
-      $state.go('pollDetails', {
+   $scope.editPoll = function(id) {
+      $state.go('editPoll', {
          pollId: id
       });
    }
 
-   $scope.submitPoll = function() {
-      $http.post('/user/polls/', {
-         title: $scope.title,
-         state: $scope.state
-      }).then(function(response) {
-         $state.go('createQuestion', {
-            pollId: response.data._id
+   $scope.loadPollDetails = function(pollId) {
+      $http.get('/api/polls/' + pollId).then(function(response) {
+         $scope.title = response.data.title;
+         $scope.state = response.data.state;
+      });
+
+      $http.get('/api/polls/' + pollId + '/questions').then(function(response) {
+
+         var questions = response.data;
+
+         angular.forEach(questions, function(value, key) {
+            var field = {};
+
+            field.choices = [];
+            field.title = value.title;
+            field.id = value._id;
+
+            $http.get('/api/polls/' + pollId + '/questions/' + value._id + '/choices').then(function(response) {
+               angular.forEach(response.data, function(value, key) {
+                  field.choices.push({
+                     text: value.text,
+                     id: value._id
+                  });
+               });
+            });
+
+            $scope.table.fields.push(field);
          });
       });
    }
 
-   $scope.finish = function() {
+   $scope.addFormQuestion = function() {
+      $scope.table.fields.push({
+         title: '',
+         choices: ['', '']
+      });
+   }
+
+   $scope.addFormChoice = function(index) {
+      $scope.table.fields[index].choices.push('');
+   }
+
+   $scope.removeFormQuestion = function(index) {
+      $scope.removedQuestionId.push($scope.table.fields[index].id);
+      $scope.table.fields.splice(index, 1);
+   }
+
+   $scope.submitPoll = function() {
+      // Ajoute les informations du poll
+      $http.post('/user/polls/', {
+         title: $scope.title,
+         state: $scope.state
+      }).then(function(response) {
+         var pollId = response.data._id;
+
+         // Ajoute les questions
+         angular.forEach($scope.table.fields, function(value, key) {
+            $http.post('/api/polls/' + pollId + '/questions', {
+
+               title: value.title,
+               type: 'choice'
+
+            }).then(function(response) {
+               var questionId = response.data._id;
+
+               // Ajoute les choix
+               angular.forEach(value.choices, function(value, key) {
+                  $http.post('/api/polls/*/questions/' + questionId + '/choices', {
+                     key: 'key',
+                     text: value
+                  });
+               });
+            });
+         });
+      });
+
       $state.go('polls');
    }
 
-   $scope.submitQuestion = function(pollId) {
+   $scope.submitPollEdition = function(pollId) {
 
-      $http.post('/api/polls/' + pollId + '/questions', {
+      $http.put('/api/polls/' + pollId, {
          title: $scope.title,
-         type: 'choice'
-      }).then(function(response) {
-         var i = 1;
-         while (true) {
-            if (!$scope['choice' + i])
-               break;
-
-            $http.post('/api/polls//questions/' + response.data._id + '/choices', {
-               key: 'key',
-               text: $scope['choice' + i]
-            });
-
-            i++;
-         }
-         if ($scope.finish === true)
-            $state.go('polls');
-         else
-            $state.go($state.current, {
-               pollId: pollId
-            }, {
-               reload: true
-            });
+         state: $scope.state
       });
+
+      angular.forEach($scope.table.fields, function(value, key) {
+
+         // Nouvelle question
+         if(value.id == undefined) {
+            $http.post('/api/polls/' + pollId + '/questions', {
+
+               title: value.title,
+               type: 'choice'
+
+            }).then(function(response) {
+               var questionId = response.data._id;
+
+               // Ajoute les choix
+               angular.forEach(value.choices, function(value, key) {
+                  $http.post('/api/polls/*/questions/' + questionId + '/choices', {
+                     key: 'key',
+                     text: value.text
+                  });
+               });
+            });
+         }
+
+         // Question existante
+         else {
+            $http.put('/api/polls/*/questions/' + value.id, {
+               title: value.title
+            });
+
+            angular.forEach(value.choices, function(choice, key) {
+               // Nouveau choix
+               if(choice.id == undefined) {
+                  $http.post('/api/polls/*/questions/' + value.id + '/choices', {
+                     key: 'key',
+                     text: choice.text
+                  });
+               }
+               else {
+                  $http.put('/api/polls/*/questions/*/choices/' + choice.id, {
+                     text: choice.text
+                  });
+               }
+            });
+         }
+      });
+
+      // On supprime les questions
+      angular.forEach($scope.removedQuestionId, function(value, key) {
+         $http.delete('/api/polls/*/questions/' + value);
+      });
+      angular.forEach($scope.removedChoiceId, function(value, key) {
+         $http.delete('/api/polls/*/questions/*/choices' + value);
+      });
+
+      $state.go('polls');
+   }
+
+   $scope.removeFormChoice = function(questionIndex, choiceIndex) {
+      $scope.removedQuestionId.push($scope.table.fields[questionIndex].choices[choiceIndex].id);
+      $scope.table.fields[questionIndex].choices.splice(choiceIndex, 1);
    }
 
    $scope.showStatistics = function(pollId) {
@@ -88,32 +197,26 @@ app.controller('PollsCtrl', function($scope, $http, $state, $q) {
       $http.get('/api/polls/' + pollId).then(function(response) {
          $scope.title = response.data.title;
       });
+
       $http.get('/api/polls/' + pollId + '/questions').then(function(response) {
 
          $scope.question = response.data[questionId];
          $scope.nbQuestions = response.data.length;
 
-         $http.get('/api/polls/*/questions/' + response.data[questionId]._id + '/choices').then(function(response) {
+         $http.get('/api/polls/*/questions/' + $scope.question._id + '/choices').then(function(response) {
 
             var choices = response.data;
 
             angular.forEach(choices, function(choice) {
+
                $scope.labels.push(choice.text);
 
                $http.get('/api/choices/' + choice._id + '/answers').then(function(response) {
                   $scope.data.push(response.data.length);
                });
 
-               /*
-               $http({
-               method: 'GET',
-               url: '/api/choices/' + choice._id + '/answers',
-               async: false
-               }).then(function successCallback(response) {
-               $scope.data.push(response.data.length);
-               }, function errorCallback(response) {
-               });*/
             });
+
          });
       });
    }
@@ -149,23 +252,5 @@ app.controller('PollsCtrl', function($scope, $http, $state, $q) {
          return false;
       }
    };
-
-
-   $scope.loadPollDetails = function(pollId) {
-      $http.get('/api/polls/' + pollId).then(function(response) {
-         $scope.poll = response.data;
-      });
-
-      $http.get('/api/polls/' + pollId + '/questions').then(function (response) {
-         $scope.questions = response.data;
-
-         angular.forEach($scope.questions, function(value, key) {
-            $http.get('/api/polls/' + pollId + '/questions/' + value._id + '/choices').then(function(response) {
-               value.choices = response.data;
-            });
-         });
-
-      });
-   }
 
 })

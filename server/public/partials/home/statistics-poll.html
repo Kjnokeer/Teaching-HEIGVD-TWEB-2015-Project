@@ -1,4 +1,4 @@
-<div class="container" ng-controller="PollsCtrl" data-ng-init="loadStatistics(pollId, questionId)"> 
+<div class="container" ng-controller="PollsCtrl" data-ng-init="loadStatistics(pollId, questionId)" ng-show="question"> 
    <h1>Stats of - {{title}}</h1>
    <hr>
    <h2>Question {{questionId * 1 + 1}} : {{question.title}}</h2>

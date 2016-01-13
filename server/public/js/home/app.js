@@ -50,11 +50,11 @@ app.config(function($stateProvider) {
          label: 'Create a poll'
       }
    });
-   $stateProvider.state('pollDetails', {
-      templateUrl: 'partials/home/poll-details.html',
-      url: '/pollDetails?pollId',
+   $stateProvider.state('editPoll', {
+      templateUrl: 'partials/home/edit-poll.html',
+      url: '/editPoll?pollId',
       ncyBreadcrumb: {
-         label: "Poll's details"
+         label: "Edit a poll"
       },
       controller: function($scope, $stateParams, $state) {
          $scope.pollId = $stateParams.pollId;

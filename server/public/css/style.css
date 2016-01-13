@@ -24,3 +24,5 @@ h1 {
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }
+
+.classWithPad { margin:10px; padding:10px; }
