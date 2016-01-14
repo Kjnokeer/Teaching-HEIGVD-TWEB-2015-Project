@@ -1,5 +1,6 @@
 angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) // déclaration du module
 .config(function($stateProvider) {
+
   $stateProvider.state('audience', {
     templateUrl: 'partials/audience/audience.html',
     url: '/audience',
@@ -52,6 +53,11 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
     url: '/end'
   });
 
+  $stateProvider.state('error', {
+      templateUrl: 'partials/audience/error.html',
+      url: '/error'
+   });
+
 })
 .factory('mySocket',	function	(socketFactory)	{
   return	socketFactory();
@@ -69,7 +75,7 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
   
   //  $scope.pollNr = "";
   
-  $scope.pollNr = $stateParams.pollNr;
+  //$scope.pollNr = $stateParams.pollNr;
 
   //$state.go("audience2", $scope.pollNr);
 
@@ -86,12 +92,20 @@ angular.module("AudienceApp", ['ui.router', 'chart.js', 'btford.socket-io' ]) //
 
     $http.get('/api/polls/' + $scope.poll.number).then(function success(response) {
 
+
+      if(response.data.state === "closed"){
+        $scope.errorMsg = "Error, this poll is closed.";
+        $state.go("error");
+        return;
+      }
+
       $state.go("question", {
         idPoll: response.data._id,
         titlePoll: response.data.title
       });
     }, function error(response){
       $scope.errorMsg = "Error, this poll doesn't exist !";
+      $state.go("error");
       console.log("error");
     });
 
