@@ -23,6 +23,6 @@ router.get('/audience/poll', function(req, res, next) {
   // Peut importe ce qu'il répond
   //res.render('audience/question');
 
-  res.send("voiture: opel");
+  //res.send("voiture: opel");
 
 });
