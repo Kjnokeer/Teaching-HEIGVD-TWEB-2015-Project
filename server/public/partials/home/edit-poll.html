@@ -1,12 +1,12 @@
-<div ng-controller="PollsCtrl">
+<div ng-controller="PollsCtrl" ng-init="loadPollDetails(pollId)">
   <div class='wrapper' >
     <div class='row'>
       <div class='col-lg-12'>
-        <form ng-submit="submitPoll()">
+        <form ng-submit="submitPollEdition(pollId)">
 
           
             <fieldset class='text-center'>
-              <legend>Create poll</legend>
+              <legend>Edit a poll</legend>
               <div class="panel panel-default">
                 <div class="panel-heading">
                   Poll
@@ -33,6 +33,7 @@
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     Question {{ $index + 1 }}
+                    
                   </div>
 
                   <div class="panel-body">
@@ -44,7 +45,7 @@
                     
                     <div class='form-group col-lg-6' ng-repeat="choice in field.choices track by $index">
                       <div class="input-group">
-                        <input type="text" ng-model='field.choices[$index]' name="choice" class="form-control" placeholder="Enter choice ..." required>
+                        <input type="text" ng-model='field.choices[$index].text' name="choice" class="form-control" placeholder="Enter choice ..." required>
                         <span class="input-group-btn">
                           <button class="btn btn-default" ng-click="removeFormChoice($parent.$index, $index)" type="button">X</button>
                         </span>
@@ -65,13 +66,10 @@
 
               <div class='text-center col-lg-12' style="margin-bottom: 20px;">
                 <div class="col-lg-6"><button type="button" class="btn btn-primary btn-block col-lg-6" ui-sref="polls">Cancel</button></div>
-                <div class="col-lg-6"><button type="submit" class="btn btn-primary btn-block">Create the poll</button></div>
+                <div class="col-lg-6"><button type="submit" class="btn btn-primary btn-block">Save changes</button></div>
               </div>
 
             </fieldset>
-          
-
-
         </form>
       </div>
     </div>

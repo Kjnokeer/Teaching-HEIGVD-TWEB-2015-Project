@@ -1,0 +1,14 @@
+<div ng-controller="PollsCtrl" ng-init="loadPollDetails(pollId)">
+   <p> id : {{ pollId }}</p>
+   <p> title : {{ poll.title }}</p>
+
+   <hr>
+
+   <div ng-repeat="question in questions">
+      {{ question.title }}
+
+      <ul style="margin-left: 20px" ng-repeat="choice in question.choices">
+         <li>{{ choice.text }}</li>
+      </ul>
+   </div>
+</div>
