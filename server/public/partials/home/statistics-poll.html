@@ -2,8 +2,11 @@
    <h1>Stats of - {{title}}</h1>
    <hr>
    <h2>Question {{questionId * 1 + 1}} : {{question.title}}</h2>
+   <div ng-show="!data[0]">
+      <h1>No responses for this question</h1>
+   </div>
    <div>
-      <canvas id="pie" class="chart chart-pie" chart-data="data" chart-labels="labels" chart-legend="true"></canvas>
+      <canvas ng-show="data[0]" id="pie" class="chart chart-pie" chart-data="data" chart-labels="labels" chart-legend="true"></canvas>
    </div>
    <div class="col-sm-6" >
       <button style="margin-bottom:5px;" data-ng-disabled="checkPreviousQuestion()" type="button" class="btn btn-primary btn-block" ng-click="previousQuestion(pollId)">Previous question</button>
