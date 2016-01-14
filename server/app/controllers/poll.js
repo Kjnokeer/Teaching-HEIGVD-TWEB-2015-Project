@@ -81,7 +81,6 @@ router.get('/api/polls/:id', function(req, res, next) {
 });
 
 
-
 // Retourne toutes les questions relatives au poll (:id)
 router.get('/api/polls/:id/questions', function(req, res, next) {
    Question.find()
@@ -120,6 +119,50 @@ router.post('/api/polls/:id/questions', function(req, res, next) {
 
    res.send(newQuestion);
 });
+
+
+router.get('/api/polls/*/questions/:id/stats', function(req, res, next) {
+
+   var choices = [];
+
+   Question.findById(req.params.id, function(err, question) {
+      if(err) return next(err);
+
+      Choice.find()
+         .where('questions').equals(question._id)
+         .exec(function(err, choices) {
+            if (err) return next(err);
+
+            for(var i = 0; i < choices.length; i++) {
+
+               var text = choices[i].text;
+               console.log(text);
+
+               Answer.find()
+                  .where('choices').equals(choices[i].id)
+                  .exec(function(err, answers) {
+                     if (err) return next(err);
+
+                     choices.push({
+                        text: text,
+                        nbAnswers: answers.length
+                     });
+
+                  });
+
+            }
+         });
+
+   });
+
+   console.log(choices);
+
+
+   res.send(choices);
+
+
+});
+
 
 // Récupère la question (id)
 router.get('/api/polls/*/questions/:id', function(req, res, next) {

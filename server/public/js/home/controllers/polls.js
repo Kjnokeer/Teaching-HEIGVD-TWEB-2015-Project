@@ -207,18 +207,21 @@ app.controller('PollsCtrl', function($scope, $http, $state, $q) {
          $http.get('/api/polls/*/questions/' + $scope.question._id + '/choices').then(function(response) {
 
             var choices = response.data;
+            var nbChoices = choices.length;
 
-            angular.forEach(choices, function(choice) {
-
-               $scope.labels.push(choice.text);
-
-               $http.get('/api/choices/' + choice._id + '/answers').then(function(response) {
-                  $scope.data.push(response.data.length);
-               });
-
-            });
-
+            $scope.request(0, nbChoices, choices);
          });
+      });
+   }
+
+   $scope.request = function(i, nbChoices, choices) {
+      if(i == nbChoices)
+         return;
+
+      $scope.labels.push(choices[i].text);
+      $http.get('/api/choices/' + choices[i]._id + '/answers').then(function(response) {
+         $scope.data.push(response.data.length);
+         $scope.request(++i, nbChoices, choices);
       });
    }
 
@@ -254,4 +257,4 @@ app.controller('PollsCtrl', function($scope, $http, $state, $q) {
       }
    };
 
-})
+   })
