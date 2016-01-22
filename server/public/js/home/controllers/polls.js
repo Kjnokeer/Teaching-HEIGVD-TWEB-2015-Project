@@ -194,6 +194,8 @@ app.controller('PollsCtrl', function($scope, $http, $state, $q) {
    $scope.loadStatistics = function(pollId, questionId) {
       $scope.labels = [];
       $scope.data = [];
+      
+      $scope.areResponses = false;
 
       $http.get('/api/polls/' + pollId).then(function(response) {
          $scope.title = response.data.title;
@@ -215,8 +217,13 @@ app.controller('PollsCtrl', function($scope, $http, $state, $q) {
    }
 
    $scope.request = function(i, nbChoices, choices) {
-      if(i == nbChoices)
+      if(i == nbChoices) {
+         angular.forEach($scope.data, function(value) {
+            if(value) 
+               $scope.areResponses = true;
+         })
          return;
+      }
 
       $scope.labels.push(choices[i].text);
       $http.get('/api/choices/' + choices[i]._id + '/answers').then(function(response) {
