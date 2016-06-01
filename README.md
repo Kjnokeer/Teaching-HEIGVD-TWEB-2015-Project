@@ -26,6 +26,9 @@ From time to time, we will add content in the repo (update the README.md file, a
 
 ## About the project
 
+change
+
+
 ### Introduction
 
 The goal of the project is to **develop a complete web application**, with a back-end server (implemented with node.js, express.js), a NoSQL database (MongoDB) and an interactive front-end (implemented AngularJS and Socket.IO). The goal is also to use a collection of tools to optimize your development workflow (grunt, heroku, test tools, etc.).
